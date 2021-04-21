@@ -13,7 +13,6 @@ use yii\db\ActiveRecord;
  * @property string|null $birth
  * @property int|null $class
  *
- * @property StudentHasCaregiver $studentHasCaregiver
  */
 class Student extends ActiveRecord
 {
@@ -55,8 +54,8 @@ class Student extends ActiveRecord
      *
      * @return ActiveQuery
      */
-    public function getStudentHasCaregiver()
+    public function getStudentHasCaregivers()
     {
-        return $this->hasOne(StudentHasCaregiver::className(), ['student_id' => 'id']);
+        return $this->hasOne(StudentHasCaregiver::class, ['student_id' => 'id']);
     }
 }

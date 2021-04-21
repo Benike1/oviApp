@@ -1,29 +1,41 @@
 <?php
 
 /* @var $this View */
-/* @var $content string */
 
 use kartik\sidenav\SideNav;
 use yii\web\View;
 
 ?>
 
-<?= SideNav::widget([
-    'items' => [
-        [
-            'label' => 'Home',
-            'url' => ['/site/index'],
-            'icon' => 'home'
-        ],
-        [
-            'url' => ['/site/about'],
-            'label' => 'About',
-            'icon' => 'info-sign',
-            'items' => [
-                ['url' => '#', 'label' => 'Item 1'],
-                ['url' => '#', 'label' => 'Item 2'],
-            ],
-        ],
-    ],
-]) ?>
-
+<?php if (!Yii::$app->user->isGuest) { ?>
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <?= SideNav::widget([
+                'type' => SideNav::TYPE_DEFAULT,
+                'heading' => 'Navigációs fül',
+                'items' => [
+                    [
+                        'url' => '/user/index',
+                        'label' => 'Felhasználók',
+                        'icon' => 'user'
+                    ],
+                    [
+                        'url' => '/caregiver/index',
+                        'label' => 'Szülők',
+                        'icon' => 'user'
+                    ],
+                    [
+                        'url' => '/teacher/index',
+                        'label' => 'Óvónők',
+                        'icon' => 'user'
+                    ],
+                    [
+                        'url' => '/student/index',
+                        'label' => 'Óvodások',
+                        'icon' => 'user'
+                    ],
+                ],
+            ]) ?>
+        </section>
+    </aside>
+<?php } ?>

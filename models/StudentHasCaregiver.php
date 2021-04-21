@@ -31,8 +31,8 @@ class StudentHasCaregiver extends ActiveRecord
     {
         return [
             [['caregiver_id'], 'integer'],
-            [['caregiver_id'], 'exist', 'skipOnError' => true, 'targetClass' => Caregiver::className(), 'targetAttribute' => ['caregiver_id' => 'id']],
-            [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['student_id' => 'id']],
+            [['caregiver_id'], 'exist', 'skipOnError' => true, 'targetClass' => Caregiver::class, 'targetAttribute' => ['caregiver_id' => 'id']],
+            [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::class, 'targetAttribute' => ['student_id' => 'id']],
         ];
     }
 
@@ -54,7 +54,7 @@ class StudentHasCaregiver extends ActiveRecord
      */
     public function getCaregiver()
     {
-        return $this->hasOne(Caregiver::className(), ['id' => 'caregiver_id']);
+        return $this->hasOne(Caregiver::class, ['id' => 'caregiver_id']);
     }
 
     /**
@@ -64,6 +64,6 @@ class StudentHasCaregiver extends ActiveRecord
      */
     public function getStudent()
     {
-        return $this->hasOne(Student::className(), ['id' => 'student_id']);
+        return $this->hasOne(Student::class, ['id' => 'student_id']);
     }
 }

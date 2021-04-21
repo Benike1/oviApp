@@ -11,7 +11,6 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string|null $name
  * @property int|null $caregiver
- * @property string|null $birth
  * @property int|null $postcode
  * @property string|null $address
  * @property string|null $street
@@ -71,6 +70,6 @@ class Caregiver extends ActiveRecord
      */
     public function getStudentHasCaregivers()
     {
-        return $this->hasMany(StudentHasCaregiver::className(), ['caregiver_id' => 'id']);
+        return $this->hasMany(StudentHasCaregiver::class, ['caregiver_id' => 'id']);
     }
 }

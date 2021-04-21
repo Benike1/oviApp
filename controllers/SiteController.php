@@ -14,7 +14,7 @@ use yii\captcha\CaptchaAction;
 class SiteController extends Controller
 {
     /**
-     * {@inheritdoc}
+     * @return array[]
      */
     public function behaviors()
     {
