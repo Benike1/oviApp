@@ -1,19 +1,14 @@
 <?php
 
 use yii\helpers\Html;
-use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-YiiAsset::register($this);
+$this->title = $model->username;
 ?>
 <div class="user-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -32,9 +27,7 @@ YiiAsset::register($this);
         'attributes' => [
             'id',
             'username',
-            'password',
-            'authKey',
-            'accessToken',
+            'email:email',
         ],
     ]) ?>
 

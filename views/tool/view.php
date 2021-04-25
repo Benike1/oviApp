@@ -5,11 +5,14 @@ use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Student */
+/* @var $model app\models\Tool */
 
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Tools', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>
-<div class="student-view">
+<div class="tool-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,8 +32,8 @@ YiiAsset::register($this);
         'attributes' => [
             'id',
             'name',
-            'birth',
-            'class',
+            'description:ntext',
+            'count',
         ],
     ]) ?>
 

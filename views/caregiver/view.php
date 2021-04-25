@@ -8,8 +8,6 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Caregiver */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Caregivers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>
 <div class="caregiver-view">

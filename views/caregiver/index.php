@@ -7,8 +7,6 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\search\CaregiverSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Caregivers';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="caregiver-index">
 

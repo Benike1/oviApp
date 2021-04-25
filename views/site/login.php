@@ -1,40 +1,62 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
 
+use app\models\LoginForm;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\web\View;
+
+/* @var $this View */
+/* @var $form ActiveForm */
+/* @var $model LoginForm */
+
+$this->registerJs("jQuery('#reveal_password').change(function(){jQuery('#loginform-password').attr('type',this.checked?'text':'password');})");
 
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>A bejelentkezéshez írja be a felhasználónevét és jelszavát!</p>
-
+    <div class="col-lg-offset-2 col-lg-8">
+        <h1>Bejelentkezés!</h1>
+        A bejelentkezéshez írja be a felhasználónevét és jelszavát!
+    </div>
     <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+        'id' => 'loginform',
+        'options' => [
+            'class' => 'form-horizontal'
         ],
-    ]); ?>
+        'layout' => 'horizontal',
+    ]) ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('Felhasználó') ?>
-
-        <?= $form->field($model, 'password')->passwordInput()->label('Jelszó') ?>
-
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ])->label('Emlékezz rám') ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Bejelentkezés', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('Felhasználó') ?>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <?= $form->field($model, 'password')->passwordInput() ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <?= Html::checkbox('reveal_password', false, ['id' => 'reveal_password']) ?> <?= Html::label('Mutasd a jelszót ', 'reveal_password') ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <?= $form->field($model, 'rememberMe')->checkbox()->label('Emlékezz rám') ?>
+        </div>
+    </div>
+
+    <div class="col-lg-offset-2 col-lg-8" style="color:#999;">
+        Elfelejtett jelszó visszaállítása <?= Html::a('itt', ['site/request-password-reset']) ?>!
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-8">
+            <?= Html::submitButton('Bejelentkezés', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+        </div>
+    </div>
 
     <?php ActiveForm::end(); ?>
 </div>

@@ -1,10 +1,9 @@
 <?php
 
+use app\models\User;
 use yii\debug\Module as DebugModule;
 use yii\gii\Module as GiiModule;
 use yii\log\FileTarget;
-use yii\swiftmailer\Mailer;
-use app\models\User;
 use yii\caching\FileCache;
 
 $params = require __DIR__ . '/params.php';
@@ -13,6 +12,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'OviApp',
     'name' => 'Ovi App',
+    'language'=> 'en',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -20,6 +20,13 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-basic-app'
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'p30K7d84MLF1a6CVWSIRz2Xe8UH7HbGc',
@@ -30,17 +37,15 @@ $config = [
         'user' => [
             'identityClass' => User::class,
             'enableAutoLogin' => true,
+            'loginUrl' => NULL
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => Mailer::class,
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
-        ],
+//        'mailer' => [
+//            'class' => Mailer::class,
+//            'useFileTransport' => true,
+//        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -67,6 +72,7 @@ $config = [
             ],
         ],
     ],
+
     'params' => $params,
 ];
 

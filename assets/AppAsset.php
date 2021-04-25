@@ -7,15 +7,13 @@
 
 namespace app\assets;
 
-use yii\web\AssetBundle;
-use yii\web\YiiAsset;
+use dmstr\web\AdminLteAsset;
 use yii\bootstrap\BootstrapAsset;
+use yii\web\AssetBundle;
 
 /**
- * Main application asset bundle.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * Class AppAsset
+ * @package app\assets
  */
 class AppAsset extends AssetBundle
 {
@@ -27,7 +25,8 @@ class AppAsset extends AssetBundle
     public $js = [
     ];
     public $depends = [
-        YiiAsset::class,
+        AppAsset::class,
+        AdminLteAsset::class,
         BootstrapAsset::class,
     ];
 }

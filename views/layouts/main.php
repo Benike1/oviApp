@@ -1,52 +1,51 @@
 <?php
 
-/* @var $this View */
-
-/* @var $content string */
-
-use app\assets\AppAsset;
+use dmstr\web\AdminLteAsset;
+use dmstr\widgets\Alert;
 use yii\helpers\Html;
 use yii\web\View;
 
-$this->title = Yii::$app->name;
-$guest = Yii::$app->user->isGuest;
+/* @var $this View */
+/* @var $content string */
 
-AppAsset::register($this);
+$this->title = Yii::$app->name;
+$user = Yii::$app->user;
+
+AdminLteAsset::register($this);
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
+    <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
     <?php $this->head() ?>
 </head>
-<body>
+
+<body class="hold-transition skin-black sidebar-mini">
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <div class="container" style="padding: 30px 15px 20px;">
-        <?= $this->render('header') ?>
-    </div>
-    <?php if (!$guest) { ?>
-        <div class="col-md-2">
-            <?= $this->render('left') ?>
-        </div>
-    <?php } ?>
-    <div class="col-md-<?= $guest ? 12 : 10 ?>>">
-        <?= $content ?>
-    </div>
-</div>
+<div class="wrapper">
+    <?= $this->render('_header') ?>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; Designed by Benjamin <?= date('Y') ?></p>
-        <p class="pull-right"><?= 'Ovi App' ?></p>
+    <?php if (!$user->isGuest) { ?>
+        <?= $this->render('_sidebar') ?>
+    <?php } ?>
+
+    <div class="content-wrapper">
+        <section class="content">
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </section>
     </div>
-</footer>
+    <footer class="main-footer">
+        Készítette <strong>Tóth Benjámin</strong>
+    </footer>
+</div>
 
 <?php $this->endBody() ?>
 </body>
