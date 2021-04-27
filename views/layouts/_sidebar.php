@@ -21,22 +21,41 @@ use yii\web\View;
                 ],
                 [
                     'label' => 'Szülők & gyerekek', 'items' => [
-                        [
-                            'url' => '/caregiver/index',
-                            'label' => 'Szülők',
-                            'icon' => 'user'
-                        ],
-                        [
-                            'url' => '/student/index',
-                            'label' => 'Óvodások',
-                            'icon' => 'user'
-                        ],
-                        [
-                            'url' => '/student-has-caregiver/index',
-                            'label' => 'Összerendelés',
-                            'icon' => 'user'
-                        ],
-                    ]
+                    [
+                        'url' => '/caregiver/index',
+                        'label' => 'Szülők',
+                        'icon' => 'user'
+                    ],
+                    [
+                        'url' => '/student/index',
+                        'label' => 'Óvodások',
+                        'icon' => 'user'
+                    ],
+                    [
+                        'url' => '/student-has-caregiver/index',
+                        'label' => 'Összerendelés',
+                        'icon' => 'user'
+                    ],
+                ]
+                ],
+                [
+                    'label' => 'Csoportok', 'items' => [
+                    [
+                        'url' => '/group/index',
+                        'label' => 'Csoport',
+                        'icon' => 'users'
+                    ],
+                    [
+                        'url' => '/group-has-teacher/index',
+                        'label' => 'Csoport & óvónők',
+                        'icon' => 'users'
+                    ],
+                    [
+                        'url' => '/group-has-student/index',
+                        'label' => 'Csoport & óvodások',
+                        'icon' => 'users'
+                    ],
+                ]
                 ],
                 [
                     'url' => '/tool/index',
