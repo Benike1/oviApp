@@ -17,7 +17,6 @@ class m210419_183126_add_caregiver_table extends Migration
                 'name' => $this->string(),
                 'caregiver' => $this->boolean(),
                 'postcode' => $this->integer(),
-                'address' => $this->string(),
                 'street' => $this->string(),
                 'house_number' => $this->string(),
                 'email' => $this->string(),
@@ -34,19 +33,4 @@ class m210419_183126_add_caregiver_table extends Migration
     {
         $this->dropTable('caregiver');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m210419_183126_add_caregiver_table cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

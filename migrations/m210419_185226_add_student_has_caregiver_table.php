@@ -12,11 +12,12 @@ class m210419_185226_add_student_has_caregiver_table extends Migration
      */
     public function safeUp()
     {
+
         $this->createTable('student_has_caregiver', [
-                'student_id' => $this->primaryKey(),
-                'caregiver_id' => $this->integer(),
-            ]
-        );
+            'student_id' => $this->integer(11)->notNull(),
+            'caregiver_id' => $this->integer(11)->notNull(),
+            'PRIMARY KEY (student_id, caregiver_id)'
+        ]);
 
         $this->addForeignKey(
             'student_has_caregiver_student_id_student_id',

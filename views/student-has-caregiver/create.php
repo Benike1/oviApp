@@ -3,12 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Tool */
+/* @var $model app\models\StudentHasCaregiver */
 
-$this->title = 'Eszközök módosítása: ' . $model->name;
+$this->title = 'Összerendelés';
 ?>
-<div class="tool-update">
+<div class="student-has-caregiver-create">
+
     <h1><?= Html::encode($this->title) ?></h1>
+
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

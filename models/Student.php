@@ -31,8 +31,7 @@ class Student extends ActiveRecord
     {
         return [
             [['birth'], 'safe'],
-            [['class'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'class'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,9 +42,9 @@ class Student extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'birth' => 'Birth',
-            'class' => 'Class',
+            'name' => 'Név',
+            'birth' => 'Születési idő',
+            'class' => 'Csoport',
         ];
     }
 
@@ -56,6 +55,18 @@ class Student extends ActiveRecord
      */
     public function getStudentHasCaregivers()
     {
-        return $this->hasOne(StudentHasCaregiver::class, ['student_id' => 'id']);
+        return $this->hasMany(StudentHasCaregiver::class, ['student_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllStudentIdWithName()
+    {
+        $students = self::find()->all();
+        foreach ($students as $student) {
+            $idWithNamMap[$student->id] =  $student->name;
+        }
+        return $idWithNamMap;
     }
 }

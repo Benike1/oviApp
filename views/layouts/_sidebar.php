@@ -15,19 +15,28 @@ use yii\web\View;
                     'icon' => 'user'
                 ],
                 [
-                    'url' => '/caregiver/index',
-                    'label' => 'Szülők',
-                    'icon' => 'user'
-                ],
-                [
                     'url' => '/teacher/index',
                     'label' => 'Óvónők',
                     'icon' => 'user'
                 ],
                 [
-                    'url' => '/student/index',
-                    'label' => 'Óvodások',
-                    'icon' => 'user'
+                    'label' => 'Szülők & gyerekek', 'items' => [
+                        [
+                            'url' => '/caregiver/index',
+                            'label' => 'Szülők',
+                            'icon' => 'user'
+                        ],
+                        [
+                            'url' => '/student/index',
+                            'label' => 'Óvodások',
+                            'icon' => 'user'
+                        ],
+                        [
+                            'url' => '/student-has-caregiver/index',
+                            'label' => 'Összerendelés',
+                            'icon' => 'user'
+                        ],
+                    ]
                 ],
                 [
                     'url' => '/tool/index',

@@ -12,12 +12,12 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'OviApp',
     'name' => 'Ovi App',
-    'language'=> 'en',
+    'language' => 'en',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'view' => [
@@ -66,13 +66,18 @@ $config = [
                 '<controller:(post|comment)>/<id:\d+>/<action:(update|delete)>' => '<controller>/<action>',
                 '<controller:(post|comment)>/<id:\d+>' => '<controller>/view',
                 '<controller:(post|comment)>s' => '<controller>/index',
-                '<controller:\w+>/<action:\w+><id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>',
             ],
         ],
+        'assetManager' => [
+            'bundles' => [
+                'kartik\form\ActiveFormAsset' => [
+                    'bsDependencyEnabled' => false
+                ],
+            ],
+        ],
     ],
-
     'params' => $params,
 ];
 

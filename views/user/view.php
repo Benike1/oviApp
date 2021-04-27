@@ -25,7 +25,6 @@ $this->title = $model->username;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'username',
             'email:email',
         ],

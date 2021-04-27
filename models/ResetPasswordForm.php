@@ -1,6 +1,7 @@
 <?php
 namespace app\models;
 
+use app\enums\PasswordEnum;
 use yii\base\InvalidArgumentException;
 use yii\base\Model;
 
@@ -10,7 +11,6 @@ use yii\base\Model;
 class ResetPasswordForm extends Model
 {
     public $password;
-
     private $user;
 
     /**
@@ -36,8 +36,9 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            [['password'], 'required'],
+            [['password'], 'string', 'min' => 6],
+            [['password'], 'in', 'range' => PasswordEnum::getLabels(), 'not' => true, 'message' => 'Nem megfelelő erőőségű jelszó!'],
         ];
     }
 

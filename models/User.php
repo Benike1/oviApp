@@ -5,6 +5,7 @@ namespace app\models;
 use app\enums\RoleEnum;
 use app\enums\StatusEnum;
 use Yii;
+use yii\base\Exception;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -79,10 +80,6 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-//            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-//            ['status', 'in', 'range' => StatusEnum::getValues()],
-//            ['role', 'default', 'value' => self::ROLE_USER],
-//            ['role', 'in', 'range' => RoleEnum::getValues()],
             'id' => 'ID',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
@@ -196,9 +193,9 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates "remember me" authentication key
+     * @throws Exception
      */
-    public function generateAuthKey()
+    public function generateAuthKey(): void
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
     }

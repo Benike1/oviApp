@@ -17,10 +17,9 @@ class m210419_183119_add_teacher_table extends Migration
                 'name' => $this->string(),
                 'birth' => $this->date(),
                 'postcode' => $this->integer(),
-                'address' => $this->string(),
                 'street' => $this->string(),
-                'house_number' => $this->string(),
-                'distance_from' => $this->string(),
+                'house_number' => $this->integer(),
+                'distance_from' => $this->integer(),
             ]
         );
     }

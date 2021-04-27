@@ -1,20 +1,20 @@
 <?php
 
+
+/* @var $this View */
+/* @var $model Teacher */
+
+use app\models\Teacher;
 use yii\helpers\Html;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Teacher */
+$this->title = 'Óvónő hozzáadása';
 
-$this->title = 'Create Teacher';
-$this->params['breadcrumbs'][] = ['label' => 'Teachers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="teacher-create">
-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>

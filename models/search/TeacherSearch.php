@@ -18,7 +18,7 @@ class TeacherSearch extends Teacher
     {
         return [
             [['id', 'postcode'], 'integer'],
-            [['name', 'birth', 'city', 'address', 'street', 'house_number', 'distance_from'], 'safe'],
+            [['name', 'birth', 'city', 'street', 'house_number', 'distance_from'], 'safe'],
         ];
     }
 
@@ -65,7 +65,6 @@ class TeacherSearch extends Teacher
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'street', $this->street])
             ->andFilterWhere(['like', 'house_number', $this->house_number])
             ->andFilterWhere(['like', 'distance_from', $this->distance_from]);

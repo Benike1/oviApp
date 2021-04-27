@@ -30,7 +30,7 @@ class StudentHasCaregiver extends ActiveRecord
     public function rules()
     {
         return [
-            [['caregiver_id'], 'integer'],
+            [['caregiver_id','student_id'], 'integer'],
             [['caregiver_id'], 'exist', 'skipOnError' => true, 'targetClass' => Caregiver::class, 'targetAttribute' => ['caregiver_id' => 'id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::class, 'targetAttribute' => ['student_id' => 'id']],
         ];
@@ -42,8 +42,8 @@ class StudentHasCaregiver extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'student_id' => 'Student ID',
-            'caregiver_id' => 'Caregiver ID',
+            'student_id' => 'Óvodás',
+            'caregiver_id' => 'Gondviselő',
         ];
     }
 

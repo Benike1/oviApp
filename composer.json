@@ -26,7 +26,9 @@
     "kartavik/yii2-enum": "^2.1",
     "dmstr/yii2-adminlte-asset": "*",
     "ext-curl": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "kartik-v/yii2-widget-datepicker": "dev-master",
+    "kartik-v/yii2-widget-select2": "dev-master"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",

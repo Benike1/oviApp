@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
-use Yii;
-use app\models\Student;
 use app\models\search\StudentSearch;
+use app\models\Student;
+use app\models\StudentHasCaregiver;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -20,6 +22,17 @@ class StudentController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['index', 'create', 'update', 'view'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -64,14 +77,14 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Student();
+        $studentModel = new Student();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($studentModel->load(Yii::$app->request->post()) && $studentModel->save()) {
+            return $this->redirect(['view', 'id' => $studentModel->id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'studentModel' => $studentModel,
         ]);
     }
 
@@ -84,14 +97,14 @@ class StudentController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $studentModel = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($studentModel->load(Yii::$app->request->post()) && $studentModel->save()) {
+            return $this->redirect(['view', 'id' => $studentModel->id]);
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'studentModel' => $studentModel,
         ]);
     }
 

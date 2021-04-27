@@ -7,11 +7,6 @@ class m210419_115159_create_users_table extends Migration
 {
     public function up()
     {
-        $tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
-        }
-
         $this->createTable('{{%user}}', [
             'id' => Schema::TYPE_PK,
             'username' => Schema::TYPE_STRING . ' NOT NULL',
@@ -23,7 +18,7 @@ class m210419_115159_create_users_table extends Migration
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
-        ], $tableOptions);
+        ]);
     }
 
     public function down()

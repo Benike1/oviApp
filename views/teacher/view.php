@@ -8,14 +8,10 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Teacher */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Teachers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>
 <div class="teacher-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -30,12 +26,10 @@ YiiAsset::register($this);
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
             'birth',
             'city',
             'postcode',
-            'address',
             'street',
             'house_number',
             'distance_from',

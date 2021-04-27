@@ -41,9 +41,9 @@ class Tool extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'count' => 'Count',
+            'name' => 'Név',
+            'description' => 'Leírás',
+            'count' => 'Mennyiség',
         ];
     }
 }

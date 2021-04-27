@@ -1,5 +1,6 @@
 <?php
 
+use app\models\StudentHasCaregiver;
 use yii\helpers\Html;
 use yii\web\YiiAsset;
 use yii\widgets\DetailView;
@@ -15,6 +16,9 @@ YiiAsset::register($this);
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?php foreach (StudentHasCaregiver::findAll(['student_id' => $model->id]) as $studentHasCaregiver) { ?>
+            <?= Html::a($studentHasCaregiver->student->name, ['student/view', 'id' => $studentHasCaregiver->student_id], ['class' => 'btn btn-success']) ?>
+        <?php } ?>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -28,12 +32,10 @@ YiiAsset::register($this);
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
             'caregiver',
             'city',
             'postcode',
-            'address',
             'street',
             'house_number',
             'email:email',

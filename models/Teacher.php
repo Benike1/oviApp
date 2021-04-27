@@ -11,7 +11,6 @@ use yii\db\ActiveRecord;
  * @property string|null $name
  * @property string|null $birth
  * @property int|null $postcode
- * @property string|null $address
  * @property string|null $street
  * @property string|null $house_number
  * @property string|null $distance_from
@@ -34,7 +33,7 @@ class Teacher extends ActiveRecord
         return [
             [['birth'], 'safe'],
             [['postcode'], 'integer'],
-            [['name', 'address', 'street', 'house_number', 'distance_from'], 'string', 'max' => 255],
+            [['name', 'street', 'house_number', 'distance_from'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,13 +44,12 @@ class Teacher extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'birth' => 'Birth',
-            'postcode' => 'Postcode',
-            'address' => 'Address',
-            'street' => 'Street',
-            'house_number' => 'House Number',
-            'distance_from' => 'Distance From',
+            'name' => 'Név',
+            'birth' => 'Születési idő',
+            'postcode' => 'Irányítószám',
+            'street' => 'Utca',
+            'house_number' => 'Házszám',
+            'distance_from' => 'Távolság a munkahelytől',
         ];
     }
 }

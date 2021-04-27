@@ -10,7 +10,6 @@ use yii\web\View;
 
 ?>
 <div class="site-reset-password">
-    <div class="row">
-        <p>Új jelszó generáláshoz kattintson <?= Html::a('ide', Html::encode($resetLink)) ?>!</p>
-    </div>
+    <h4>Amennyiben biztos benne, hogy új jelszót generál, kattintson az "Új jelszó generálása!" gombra!</h4>
+    <button><?= Html::a('Új jelszó generálása!', Html::encode($resetLink)) ?></button>
 </div>

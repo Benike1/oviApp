@@ -12,7 +12,6 @@ use yii\db\ActiveRecord;
  * @property string|null $name
  * @property int|null $caregiver
  * @property int|null $postcode
- * @property string|null $address
  * @property string|null $street
  * @property string|null $house_number
  * @property string|null $email
@@ -37,9 +36,12 @@ class Caregiver extends ActiveRecord
     public function rules()
     {
         return [
-            [['caregiver', 'postcode'], 'integer'],
+            [[ 'postcode'], 'integer'],
+            [['caregiver'], 'boolean'],
             [['birth'], 'safe'],
-            [['name', 'address', 'street', 'house_number', 'email', 'phone', 'phone_home'], 'string', 'max' => 255],
+            [['name', 'city', 'street', 'house_number', 'phone', 'phone_home'], 'string', 'max' => 255],
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'email'],
         ];
     }
 
@@ -51,15 +53,15 @@ class Caregiver extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Név',
-            'caregiver' => 'Gondozó',
+            'caregiver' => 'Gondviselő',
             'birth' => 'Születési idő',
+            'city' => 'Város',
             'postcode' => 'Irányítószám',
-            'address' => 'Cím',
-            'street' => 'Street',
-            'house_number' => 'House Number',
+            'street' => 'Utca',
+            'house_number' => 'Házszám',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'phone_home' => 'Phone Home',
+            'phone' => 'Mobil',
+            'phone_home' => 'Telefon (vezetékes)',
         ];
     }
 
@@ -71,5 +73,17 @@ class Caregiver extends ActiveRecord
     public function getStudentHasCaregivers()
     {
         return $this->hasMany(StudentHasCaregiver::class, ['caregiver_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllCaregiverIdWithName()
+    {
+        $caregivers = self::find()->all();
+        foreach ($caregivers as $caregiver) {
+            $idWithNamMap[$caregiver->id] =  $caregiver->name;
+        }
+        return $idWithNamMap;
     }
 }

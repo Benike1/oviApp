@@ -9,26 +9,46 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="caregiver-form">
-
     <?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-4">
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-2">
+            <?= $form->field($model, 'caregiver')->checkbox() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'phone_home')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'caregiver')->textInput() ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'city')->textInput() ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'postcode')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'postcode')->textInput() ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'house_number')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'house_number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone_home')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

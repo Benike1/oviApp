@@ -5,6 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Caregiver */
 
+$this->title = 'Szülő létrehozása';
+
 ?>
 <div class="caregiver-create">
 

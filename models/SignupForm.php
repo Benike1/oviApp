@@ -4,7 +4,6 @@ namespace app\models;
 
 use app\enums\PasswordEnum;
 use yii\base\Model;
-use Yii;
 
 /**
  * Signup form
@@ -22,10 +21,10 @@ class SignupForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('app', 'User name'),
-            'email' => Yii::t('app', 'Email address'),
-            'password' => Yii::t('app', 'Password'),
-            'password_repeat' => Yii::t('app', 'Repeat Password'),
+            'username' => 'Felhasználónév',
+            'email' => 'Email cím',
+            'password' => 'Jelszó',
+            'password_repeat' => 'Jelszó újra',
         ];
     }
 
@@ -38,7 +37,7 @@ class SignupForm extends Model
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => User::class, 'message' => 'Ez a felhasználónév már foglalt!'],
-            ['username', 'string', 'min' => 4, 'max' => 20],
+            ['username', 'string', 'min' => 6, 'max' => 20],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],

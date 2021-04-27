@@ -3,7 +3,6 @@
 /* @var $this View */
 
 use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\web\View;
 
@@ -11,14 +10,11 @@ use yii\web\View;
 <header class="main-header">
     <a href="<?= Yii::$app->homeUrl ?>" class="logo"><?= Yii::$app->name ?></a>
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-static-top" style="padding-right: 10px" role="navigation">
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"></a>
-
-        <div class="navbar-custom-menu">
-            <?php NavBar::begin() ?>
             <?= Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
+                'options' => ['class' => 'navbar-nav navbar-right p-1'],
                 'items' => [
                     Yii::$app->user->isGuest ?
                         [
@@ -37,11 +33,9 @@ use yii\web\View;
                     Yii::$app->user->isGuest ?
                         [
                             'label' => 'Regisztráció',
-                            'url' => ['/site/signup']
+                            'url' => ['/site/signup'],
                         ] : ''
                 ],
             ]) ?>
-            <?php NavBar::end() ?>
-        </div>
     </nav>
 </header>

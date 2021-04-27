@@ -25,13 +25,8 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup'],
+                'only' => ['logout'],
                 'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
                     [
                         'actions' => ['logout'],
                         'allow' => true,
@@ -67,7 +62,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('../site/index');
+        return $this->render('index');
     }
 
     /**
@@ -78,6 +73,10 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user) {
+            return $this->goHome();
+        }
+        if (!Yii::$app->user->isGuest) {
+            Yii::$app->getSession()->setFlash('error', 'Ön már be van jelentkezve, ha másik felhasználó névvel szeretne belépni, előbb jelentkezzen ki!');
             return $this->goHome();
         }
 

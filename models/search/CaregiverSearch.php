@@ -18,7 +18,7 @@ class CaregiverSearch extends Caregiver
     {
         return [
             [['id', 'caregiver', 'postcode'], 'integer'],
-            [['name', 'city', 'address', 'street', 'house_number', 'email', 'phone', 'phone_home'], 'safe'],
+            [['name', 'city', 'street', 'house_number', 'email', 'phone', 'phone_home'], 'safe'],
         ];
     }
 
@@ -65,7 +65,6 @@ class CaregiverSearch extends Caregiver
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'street', $this->street])
             ->andFilterWhere(['like', 'house_number', $this->house_number])
             ->andFilterWhere(['like', 'email', $this->email])
