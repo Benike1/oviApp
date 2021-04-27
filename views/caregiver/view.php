@@ -1,12 +1,14 @@
 <?php
 
+use app\models\Caregiver;
 use app\models\StudentHasCaregiver;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Caregiver */
+/* @var $this View */
+/* @var $model Caregiver */
 
 $this->title = $model->name;
 YiiAsset::register($this);
@@ -16,14 +18,16 @@ YiiAsset::register($this);
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?php foreach (StudentHasCaregiver::findAll(['student_id' => $model->id]) as $studentHasCaregiver) { ?>
+        <?php foreach (StudentHasCaregiver::findAll(['caregiver_id' => $model->id]) as $studentHasCaregiver) { ?>
             <?= Html::a($studentHasCaregiver->student->name, ['student/view', 'id' => $studentHasCaregiver->student_id], ['class' => 'btn btn-success']) ?>
         <?php } ?>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+
+        <?= Html::a('Összerendelés', ['create'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Biztosan törli a szülőt?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -41,6 +45,12 @@ YiiAsset::register($this);
             'email:email',
             'phone',
             'phone_home',
+            [
+                'attribute' => 'students',
+                'value' => static function (Caregiver $model) {
+                    return implode(', ', $model->getStudentNames());
+                }
+            ],
         ],
     ]) ?>
 

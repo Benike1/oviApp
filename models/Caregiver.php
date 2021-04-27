@@ -76,6 +76,19 @@ class Caregiver extends ActiveRecord
     }
 
     /**
+     * @return array|null[]|string[]|null
+     */
+    public function getStudentNames()
+    {
+        $students = $this->getStudentHasCaregivers()->all();
+        if (!$students) {
+            return null;
+        }
+        return array_map(static function (StudentHasCaregiver $student) {
+            return $student->caregiver->name;
+        }, $students);
+    }
+    /**
      * @return array
      */
     public static function getAllCaregiverIdWithName()

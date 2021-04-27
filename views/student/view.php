@@ -19,8 +19,8 @@ YiiAsset::register($this);
         <?php foreach (StudentHasCaregiver::findAll(['student_id' => $model->id]) as $studentHasCaregiver) { ?>
             <?= Html::a($studentHasCaregiver->caregiver->name, ['caregiver/view', 'id' => $studentHasCaregiver->caregiver_id], ['class' => 'btn btn-success']) ?>
         <?php } ?>
-        <?= Html::a('Összerendelés', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Összerendelés', ['create'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('Módosítás', ['Módosítás', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -36,6 +36,12 @@ YiiAsset::register($this);
             'name',
             'birth',
             'class',
+            [
+                'attribute' => 'caregivers',
+                'value' => static function (Student $model) {
+                    return implode(', ', $model->getCaregiverNames());
+                }
+            ],
         ],
     ]) ?>
 

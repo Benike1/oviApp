@@ -1,15 +1,15 @@
 <?php
 
-use app\models\StudentHasCaregiver;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
-/* @var $this View */
-/* @var $model StudentHasCaregiver */
+/* @var $this yii\web\View */
+/* @var $model app\models\StudentHasCaregiver */
 
-$this->title = $model->student->name . ', ' . $model->caregiver->name;
+$this->title = $model->student_id;
+$this->params['breadcrumbs'][] = ['label' => 'Student Has Caregivers', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>
 <div class="student-has-caregiver-view">
@@ -30,18 +30,8 @@ YiiAsset::register($this);
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            [
-                'attribute' => 'student_id',
-                'value' => static function (StudentHasCaregiver $model) {
-                    return $model->student->name;
-                }
-            ],
-            [
-                'attribute' => 'caregiver_id',
-                'value' => static function (StudentHasCaregiver $model) {
-                    return $model->caregiver->name;
-                }
-            ],
+            'student_id',
+            'caregiver_id',
         ],
     ]) ?>
 

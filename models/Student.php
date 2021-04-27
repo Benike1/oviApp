@@ -59,13 +59,27 @@ class Student extends ActiveRecord
     }
 
     /**
+     * @return array|null[]|string[]|null
+     */
+    public function getCaregiverNames()
+    {
+        $caregivers = $this->getStudentHasCaregivers()->all();
+        if (!$caregivers) {
+            return null;
+        }
+        return array_map(static function (StudentHasCaregiver $hasCaregiver) {
+            return $hasCaregiver->caregiver->name;
+        }, $caregivers);
+    }
+
+    /**
      * @return array
      */
     public static function getAllStudentIdWithName()
     {
         $students = self::find()->all();
         foreach ($students as $student) {
-            $idWithNamMap[$student->id] =  $student->name;
+            $idWithNamMap[$student->id] = $student->name;
         }
         return $idWithNamMap;
     }

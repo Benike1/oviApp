@@ -12,7 +12,6 @@ class m210419_185226_add_student_has_caregiver_table extends Migration
      */
     public function safeUp()
     {
-
         $this->createTable('student_has_caregiver', [
             'student_id' => $this->integer(11)->notNull(),
             'caregiver_id' => $this->integer(11)->notNull(),
@@ -43,19 +42,4 @@ class m210419_185226_add_student_has_caregiver_table extends Migration
     {
         $this->dropTable('student_has_caregiver');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m210419_185226_add_student_has_caregiver_table cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
