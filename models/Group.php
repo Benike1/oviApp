@@ -8,6 +8,11 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "group".
  *
+ * @property int $id
+ * @property string|null $name
+ * @property string|null $description
+ * @property string|null $age_group
+ *
  * @property GroupHasStudent[] $groupHasStudents
  * @property Student[] $students
  * @property GroupHasTeacher[] $groupHasTeachers
@@ -29,8 +34,8 @@ class Group extends ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['description'], 'string'],
+            [['name', 'age_group'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,6 +48,7 @@ class Group extends ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'description' => 'Description',
+            'age_group' => 'Age Group',
         ];
     }
 
@@ -53,7 +59,7 @@ class Group extends ActiveRecord
      */
     public function getGroupHasStudents()
     {
-        return $this->hasMany(GroupHasStudent::className(), ['group_id' => 'id']);
+        return $this->hasMany(GroupHasStudent::class, ['group_id' => 'id']);
     }
 
     /**
@@ -63,7 +69,7 @@ class Group extends ActiveRecord
      */
     public function getStudents()
     {
-        return $this->hasMany(Student::className(), ['id' => 'student_id'])->viaTable('group_has_student', ['group_id' => 'id']);
+        return $this->hasMany(Student::class, ['id' => 'student_id'])->viaTable('group_has_student', ['group_id' => 'id']);
     }
 
     /**
@@ -73,7 +79,7 @@ class Group extends ActiveRecord
      */
     public function getGroupHasTeachers()
     {
-        return $this->hasMany(GroupHasTeacher::className(), ['group_id' => 'id']);
+        return $this->hasMany(GroupHasTeacher::class, ['group_id' => 'id']);
     }
 
     /**
@@ -83,6 +89,18 @@ class Group extends ActiveRecord
      */
     public function getTeachers()
     {
-        return $this->hasMany(Teacher::className(), ['id' => 'teacher_id'])->viaTable('group_has_teacher', ['group_id' => 'id']);
+        return $this->hasMany(Teacher::class, ['id' => 'teacher_id'])->viaTable('group_has_teacher', ['group_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllGroupIdWithName()
+    {
+        $groups = self::find()->all();
+        foreach ($groups as $group) {
+            $idWithNamMap[$group->id] = $group->name;
+        }
+        return $idWithNamMap??[];
     }
 }

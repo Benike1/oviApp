@@ -97,6 +97,6 @@ class Caregiver extends ActiveRecord
         foreach ($caregivers as $caregiver) {
             $idWithNamMap[$caregiver->id] =  $caregiver->name;
         }
-        return $idWithNamMap;
+        return $idWithNamMap??[];
     }
 }

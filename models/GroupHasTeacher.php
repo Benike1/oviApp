@@ -10,6 +10,8 @@ use yii\db\ActiveRecord;
  *
  * @property Group $group
  * @property Teacher $teacher
+ * @property int $group_id
+ * @property int $teacher_id
  */
 class GroupHasTeacher extends ActiveRecord
 {
@@ -30,8 +32,8 @@ class GroupHasTeacher extends ActiveRecord
             [['group_id', 'teacher_id'], 'required'],
             [['group_id', 'teacher_id'], 'integer'],
             [['group_id', 'teacher_id'], 'unique', 'targetAttribute' => ['group_id', 'teacher_id']],
-            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
-            [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['teacher_id' => 'id']],
+            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::class, 'targetAttribute' => ['group_id' => 'id']],
+            [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::class, 'targetAttribute' => ['teacher_id' => 'id']],
         ];
     }
 
@@ -41,8 +43,8 @@ class GroupHasTeacher extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'group_id' => 'Group ID',
-            'teacher_id' => 'Teacher ID',
+            'group_id' => 'Csoport',
+            'teacher_id' => 'Óvónő',
         ];
     }
 
@@ -53,7 +55,7 @@ class GroupHasTeacher extends ActiveRecord
      */
     public function getGroup()
     {
-        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+        return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
     /**
@@ -63,6 +65,6 @@ class GroupHasTeacher extends ActiveRecord
      */
     public function getTeacher()
     {
-        return $this->hasOne(Teacher::className(), ['id' => 'teacher_id']);
+        return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }
 }

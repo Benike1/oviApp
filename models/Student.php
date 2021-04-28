@@ -81,6 +81,6 @@ class Student extends ActiveRecord
         foreach ($students as $student) {
             $idWithNamMap[$student->id] = $student->name;
         }
-        return $idWithNamMap;
+        return $idWithNamMap??[];
     }
 }

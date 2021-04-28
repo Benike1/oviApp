@@ -10,6 +10,8 @@ use yii\db\ActiveRecord;
  *
  * @property Group $group
  * @property Student $student
+ * @property int $group_id [int(11)]
+ * @property int $student_id [int(11)]
  */
 class GroupHasStudent extends ActiveRecord
 {
@@ -30,8 +32,8 @@ class GroupHasStudent extends ActiveRecord
             [['group_id', 'student_id'], 'required'],
             [['group_id', 'student_id'], 'integer'],
             [['group_id', 'student_id'], 'unique', 'targetAttribute' => ['group_id', 'student_id']],
-            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
-            [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['student_id' => 'id']],
+            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::class, 'targetAttribute' => ['group_id' => 'id']],
+            [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::class, 'targetAttribute' => ['student_id' => 'id']],
         ];
     }
 
@@ -41,8 +43,8 @@ class GroupHasStudent extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'group_id' => 'Group ID',
-            'student_id' => 'Student ID',
+            'group_id' => 'Csoport',
+            'student_id' => 'Óvodás',
         ];
     }
 
@@ -53,7 +55,7 @@ class GroupHasStudent extends ActiveRecord
      */
     public function getGroup()
     {
-        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+        return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
     /**
@@ -63,6 +65,6 @@ class GroupHasStudent extends ActiveRecord
      */
     public function getStudent()
     {
-        return $this->hasOne(Student::className(), ['id' => 'student_id']);
+        return $this->hasOne(Student::class, ['id' => 'student_id']);
     }
 }

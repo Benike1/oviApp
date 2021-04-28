@@ -1,6 +1,6 @@
 <?php
 
-use app\enums\ClassEnum;
+use app\enums\AgeGroupEnum;
 use app\models\Student;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-lg-6">
             <?= $form->field($studentModel, 'class')->widget(Select2::class, [
-                'data' => ClassEnum::getLabels(),
+                'data' => AgeGroupEnum::getLabels(),
                 'options' => ['placeholder' => 'Select a state ...'],
                 'pluginOptions' => [
                     'allowClear' => true

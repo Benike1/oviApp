@@ -1,5 +1,6 @@
 <?php
 
+use app\models\GroupHasTeacher;
 use app\models\search\GroupHasTeacherSearch;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
@@ -22,8 +23,18 @@ $this->title = 'Csoportok - óvónők összerendelése';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'group_id',
-            'teacher_id',
+            [
+                'attribute' => 'group_id',
+                'value' => static function (GroupHasTeacher $model) {
+                    return $model->group->name;
+                }
+            ],
+            [
+                'attribute' => 'teacher_id',
+                'value' => static function (GroupHasTeacher $model) {
+                    return $model->teacher->name;
+                }
+            ],
             [
                 'class' => ActionColumn::class
             ],

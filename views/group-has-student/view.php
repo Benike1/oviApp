@@ -1,10 +1,12 @@
 <?php
 
+use app\models\GroupHasStudent;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\GroupHasStudent */
+/* @var $this View */
+/* @var $model GroupHasStudent */
 
 $this->title = $model->group->name . ' - ' . $model->student->name . 'vizsgálata';
 
@@ -24,8 +26,18 @@ $this->title = $model->group->name . ' - ' . $model->student->name . 'vizsgálat
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'group_id',
-            'student_id',
+            [
+                'attribute' => 'group_id',
+                'value' => static function (GroupHasStudent $model) {
+                    return $model->group->name;
+                }
+            ],
+            [
+                'attribute' => 'student_id',
+                'value' => static function (GroupHasStudent $model) {
+                    return $model->student->name;
+                }
+            ],
         ],
     ]) ?>
 </div>

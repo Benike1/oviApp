@@ -24,6 +24,7 @@ $this->title = $model->name;
         'model' => $model,
         'attributes' => [
             'name',
+            'age_group',
             'description',
         ],
     ]) ?>

@@ -17,8 +17,8 @@ class GroupSearch extends Group
     public function rules()
     {
         return [
-            [['id', 'description'], 'integer'],
-            [['name'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'description', 'age_group'], 'safe'],
         ];
     }
 
@@ -59,10 +59,11 @@ class GroupSearch extends Group
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'description' => $this->description,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'age_group', $this->age_group]);
 
         return $dataProvider;
     }

@@ -1,10 +1,12 @@
 <?php
 
+use app\models\GroupHasTeacher;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\GroupHasTeacher */
+/* @var $this View */
+/* @var $model GroupHasTeacher */
 
 $this->title = $model->group->name;
 ?>
@@ -24,8 +26,18 @@ $this->title = $model->group->name;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'group_id',
-            'teacher_id',
+            [
+                'attribute' => 'group_id',
+                'value' => static function (GroupHasTeacher $model) {
+                    return $model->group->name;
+                }
+            ],
+            [
+                'attribute' => 'teacher_id',
+                'value' => static function (GroupHasTeacher $model) {
+                    return $model->teacher->name;
+                }
+            ],
         ],
     ]) ?>
 

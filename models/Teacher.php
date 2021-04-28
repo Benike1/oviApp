@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -10,11 +11,14 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string|null $name
  * @property string|null $birth
+ * @property string|null $city
  * @property int|null $postcode
  * @property string|null $street
- * @property string|null $house_number
- * @property string|null $distance_from
- * @property string $city
+ * @property int|null $house_number
+ * @property int|null $distance_from
+ *
+ * @property GroupHasTeacher[] $groupHasTeachers
+ * @property Group[] $groups
  */
 class Teacher extends ActiveRecord
 {
@@ -33,8 +37,8 @@ class Teacher extends ActiveRecord
     {
         return [
             [['birth'], 'safe'],
-            [['postcode'], 'integer'],
-            [['name', 'city', 'street', 'house_number', 'distance_from'], 'string', 'max' => 255],
+            [['postcode', 'house_number', 'distance_from'], 'integer'],
+            [['name', 'city', 'street'], 'string', 'max' => 255],
         ];
     }
 
@@ -53,5 +57,37 @@ class Teacher extends ActiveRecord
             'house_number' => 'Házszám',
             'distance_from' => 'Távolság a munkahelytől',
         ];
+    }
+
+    /**
+     * Gets query for [[GroupHasTeachers]].
+     *
+     * @return ActiveQuery
+     */
+    public function getGroupHasTeachers()
+    {
+        return $this->hasMany(GroupHasTeacher::className(), ['teacher_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Groups]].
+     *
+     * @return ActiveQuery
+     */
+    public function getGroups()
+    {
+        return $this->hasMany(Group::className(), ['id' => 'group_id'])->viaTable('group_has_teacher', ['teacher_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllTeacherIdWithName()
+    {
+        $teachers = self::find()->all();
+        foreach ($teachers as $teacher) {
+            $idWithNamMap[$teacher->id] = $teacher->name;
+        }
+        return $idWithNamMap ?? [];
     }
 }
