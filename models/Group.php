@@ -46,9 +46,9 @@ class Group extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'age_group' => 'Age Group',
+            'name' => 'Név',
+            'description' => 'Leírás',
+            'age_group' => 'Csoport',
         ];
     }
 

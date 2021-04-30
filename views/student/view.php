@@ -4,14 +4,12 @@ use app\models\Student;
 use app\models\StudentHasCaregiver;
 use yii\helpers\Html;
 use yii\web\View;
-use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /* @var $this View */
 /* @var $model Student */
 
 $this->title = $model->name;
-YiiAsset::register($this);
 ?>
 <div class="student-view">
     <h1><?= Html::encode($this->title) ?></h1>

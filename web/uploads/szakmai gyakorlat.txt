@@ -1,0 +1,23 @@
+Átfogó ismeretet szereztem egy-egy projekt tervezésének, létrehozásának, fejlesztésének és karbantartásának menetéről.
+1.) Projekt (használt autók eladásával foglalkozó külföldi honlap admin felülete):  melyet több fejlesztő után én kaptam meg karbantartásra, illetve új funkciók fejlesztésére.
+2.) Projekt (AmazonS3 webApp): tervezése, létrehozása és karbantartása, Amazon szerverén lévő fájlok folyamatos szinkronizálását teszi lehetővé az előző (autók eladásával foglalkozó honlap) projekthez.
+3.) Projekt (Frontend optimalizáció): weblap frontendjének optimalizálása (Widgetesítés, kód duplikálások minimalizálása, stb.)
+
+Többszöri, folyamatos megbeszéléseken egyeztettünk, hogy milyen usecase-eket használjak, együtt megterveztük, majd egyedül kiviteleztem a megbeszélteket.
+pl.: új projekt létrehozásakor együtt a mentor vezetésével terveztük meg az adatbázis felépítését.
+
+Minden esetben meghallgattak, elmondhattam véleményemet, elképzeléseimet a feladataimmal vagy akár más projektekkel kapcsolatban.
+pl.: A cég új projektjéhez több workshop alkalmával is lehetőségem volt saját véleményemet kifejteni a tervezéssel kapcsolatban, amit figyelembe is vettek.
+
+Pár hónap alatt a cég szinte minden projektjében kaptam feladatokat, amiket túlnyomó többséggel egyedül oldottam meg. Egy projektet egyedül viszek, én bonyolítom le a a megrendelőkkel való kapcsolattartás nagy részét (Skype megbeszélések, külföldi megrendelők), valamint Full-stack fejlesztőként rám hárult a frontend és backend fejlesztés is. Ezek sikeres teljesítése mellett úgy érzem felelősségteljes munkát kaptam a tapasztalatszerzéshez.
+
+Git és composer használatának elsajátítása, 
+PHP nyelv elsajátítása Yii2 és Laravel framwork megismerése, 
+alap szintű DevOps ismeretek elsajátítása, 
+MySql megismerése,
+AWS (Amazon Web Services) megismerése,
+Webfejlesztéshez szükséges egyéb technológiák elsajátítása (pl.: böngészők közti különbségek, WebTools, stb.).
+
+Heti meetingek, nem csak szakmai témákról szólnak így jól kivehetem részem a cég életében is. 
+Jól kijövök és jól megértetem az elképzeléseimet munkatársaimmal, főnökömmel egyaránt. 
+Több ízben rendezett csapatösszetartók oszlopos tagja lettem. 

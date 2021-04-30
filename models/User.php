@@ -81,15 +81,15 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
+            'username' => 'Felhasználónév',
+            'auth_key' => 'Azonosító kulcs',
+            'password_hash' => 'Jelszó kód',
+            'password_reset_token' => 'Jelszó visszaállító token',
+            'email' => 'Email cím',
             'role' => 'Role',
             'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'created_at' => 'Létrehozás dátuma',
+            'updated_at' => 'Módosítás dátuma',
         ];
     }
 

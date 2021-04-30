@@ -59,9 +59,9 @@ class Caregiver extends ActiveRecord
             'postcode' => 'Irányítószám',
             'street' => 'Utca',
             'house_number' => 'Házszám',
-            'email' => 'Email',
-            'phone' => 'Mobil',
-            'phone_home' => 'Telefon (vezetékes)',
+            'email' => 'Email cím',
+            'phone' => 'Mobilteledfonszám',
+            'phone_home' => 'Telefonszám (vezetékes)',
         ];
     }
 

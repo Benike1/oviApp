@@ -3,11 +3,11 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Teacher */
+/* @var $model app\models\File */
 
-$this->title = $model->name . 'módosítása.';
+$this->title = 'Fájl módosítása: ' . $model->name;
 ?>
-<div class="teacher-update">
+<div class="file-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

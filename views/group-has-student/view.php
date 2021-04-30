@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 /* @var $this View */
 /* @var $model GroupHasStudent */
 
-$this->title = $model->group->name . ' - ' . $model->student->name . 'vizsgálata';
+$this->title = $model->group->name . ' - ' . $model->student->name;
 
 ?>
 <div class="group-has-student-view">

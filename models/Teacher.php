@@ -66,7 +66,7 @@ class Teacher extends ActiveRecord
      */
     public function getGroupHasTeachers()
     {
-        return $this->hasMany(GroupHasTeacher::className(), ['teacher_id' => 'id']);
+        return $this->hasMany(GroupHasTeacher::class, ['teacher_id' => 'id']);
     }
 
     /**
@@ -76,7 +76,17 @@ class Teacher extends ActiveRecord
      */
     public function getGroups()
     {
-        return $this->hasMany(Group::className(), ['id' => 'group_id'])->viaTable('group_has_teacher', ['teacher_id' => 'id']);
+        return $this->hasMany(Group::class, ['id' => 'group_id'])->viaTable('group_has_teacher', ['teacher_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Files]].
+     *
+     * @return ActiveQuery
+     */
+    public function getFiles()
+    {
+        return $this->hasMany(File::class, ['id' => 'file_id'])->viaTable('teacher_has_file', ['teacher_id' => 'id']);
     }
 
     /**

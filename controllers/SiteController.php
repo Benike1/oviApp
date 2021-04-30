@@ -72,7 +72,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user) {
+        if (!Yii::$app->user ) {
             return $this->goHome();
         }
         if (!Yii::$app->user->isGuest) {
@@ -96,6 +96,11 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        if (!Yii::$app->user->isGuest) {
+            Yii::$app->getSession()->setFlash('error', 'Ön már be van jelentkezve, ha másik felhasználó névvel szeretne belépni, előbb jelentkezzen ki!');
+            return $this->goHome();
+        }
+
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
@@ -124,6 +129,11 @@ class SiteController extends Controller
 
     public function actionRequestPasswordReset()
     {
+        if (!Yii::$app->user->isGuest) {
+            Yii::$app->getSession()->setFlash('error', 'Ön már be van jelentkezve, jelszó változtatáshoz kérem, előbb jelentkezzen ki!');
+            return $this->goHome();
+        }
+
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($user = $model->sendGenerateResetToken()) {
@@ -148,6 +158,10 @@ class SiteController extends Controller
      */
     public function actionResetPassword($token)
     {
+        if (!Yii::$app->user->isGuest) {
+            Yii::$app->getSession()->setFlash('error', 'Ön már be van jelentkezve, jelszó változtatáshoz kérem, előbb jelentkezzen ki!');
+            return $this->goHome();
+        }
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidArgumentException $e) {

@@ -4,33 +4,32 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Teacher */
+/* @var $model app\models\File */
 
 $this->title = $model->name;
 ?>
-<div class="teacher-view">
+<div class="file-view">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Biztosan törlöd ezt a file-t?',
                 'method' => 'post',
             ],
         ]) ?>
+        <?php if (!$model->isNewRecord) { ?>
+            <?= Html::a('Download file', ['download', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?php } ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'name',
-            'birth',
-            'city',
-            'postcode',
-            'street',
-            'house_number',
-            'distance_from',
+            'description:ntext',
+            'filename',
         ],
     ]) ?>
 

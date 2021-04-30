@@ -3,17 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\GroupHasTeacher;
-use app\models\search\GroupHasTeacherSearch;
+use app\models\TeacherHasFile;
+use app\models\search\TeacherHasFileSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GroupHasTeacherController implements the CRUD actions for GroupHasTeacher model.
+ * TeacherHasFileController implements the CRUD actions for TeacherHasFile model.
  */
-class GroupHasTeacherController extends Controller
+class TeacherHasFileController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -42,12 +42,12 @@ class GroupHasTeacherController extends Controller
     }
 
     /**
-     * Lists all GroupHasTeacher models.
+     * Lists all TeacherHasFile models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new GroupHasTeacherSearch();
+        $searchModel = new TeacherHasFileSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -57,41 +57,30 @@ class GroupHasTeacherController extends Controller
     }
 
     /**
-     * Displays a single GroupHasTeacher model.
-     * @param integer $group_id
+     * Displays a single TeacherHasFile model.
      * @param integer $teacher_id
+     * @param integer $file_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($group_id, $teacher_id)
+    public function actionView($teacher_id, $file_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($group_id, $teacher_id),
+            'model' => $this->findModel($teacher_id, $file_id),
         ]);
     }
 
     /**
-     * Creates a new GroupHasTeacher model.
+     * Creates a new TeacherHasFile model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new GroupHasTeacher();
+        $model = new TeacherHasFile();
 
-        $post = Yii::$app->request->post();
-        if (isset($post['GroupHasTeacher']) && GroupHasTeacher::findOne([
-                'group_id' => $post['GroupHasTeacher']['group_id'],
-                'teacher_id' => $post['GroupHasTeacher']['teacher_id'],
-            ])) {
-            return $this->redirect([
-                'view',
-                'group_id' => $post['GroupHasTeacher']['group_id'],
-                'teacher_id' => $post['GroupHasTeacher']['teacher_id']
-            ]);
-        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'group_id' => $model->group_id, 'teacher_id' => $model->teacher_id]);
+            return $this->redirect(['view', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id]);
         }
 
         return $this->render('create', [
@@ -100,31 +89,19 @@ class GroupHasTeacherController extends Controller
     }
 
     /**
-     * Updates an existing GroupHasTeacher model.
+     * Updates an existing TeacherHasFile model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $group_id
      * @param integer $teacher_id
+     * @param integer $file_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($group_id, $teacher_id)
+    public function actionUpdate($teacher_id, $file_id)
     {
-        $model = $this->findModel($group_id, $teacher_id);
+        $model = $this->findModel($teacher_id, $file_id);
 
-        $post = Yii::$app->request->post();
-        if (isset($post['GroupHasTeacher']) && GroupHasTeacher::findOne([
-                'group_id' => $post['GroupHasTeacher']['group_id'],
-                'teacher_id' => $post['GroupHasTeacher']['teacher_id'],
-            ])) {
-            return $this->redirect([
-                'view',
-                'group_id' => $post['GroupHasTeacher']['group_id'],
-                'teacher_id' => $post['GroupHasTeacher']['teacher_id']
-            ]);
-        }
-
-        if ($model->load($post) && $model->save()) {
-            return $this->redirect(['view', 'group_id' => $model->group_id, 'teacher_id' => $model->teacher_id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id]);
         }
 
         return $this->render('update', [
@@ -133,31 +110,31 @@ class GroupHasTeacherController extends Controller
     }
 
     /**
-     * Deletes an existing GroupHasTeacher model.
+     * Deletes an existing TeacherHasFile model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $group_id
      * @param integer $teacher_id
+     * @param integer $file_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($group_id, $teacher_id)
+    public function actionDelete($teacher_id, $file_id)
     {
-        $this->findModel($group_id, $teacher_id)->delete();
+        $this->findModel($teacher_id, $file_id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the GroupHasTeacher model based on its primary key value.
+     * Finds the TeacherHasFile model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $group_id
      * @param integer $teacher_id
-     * @return GroupHasTeacher the loaded model
+     * @param integer $file_id
+     * @return TeacherHasFile the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($group_id, $teacher_id)
+    protected function findModel($teacher_id, $file_id)
     {
-        if (($model = GroupHasTeacher::findOne(['group_id' => $group_id, 'teacher_id' => $teacher_id])) !== null) {
+        if (($model = TeacherHasFile::findOne(['teacher_id' => $teacher_id, 'file_id' => $file_id])) !== null) {
             return $model;
         }
 

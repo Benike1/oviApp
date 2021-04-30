@@ -4,15 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Teacher */
+/* @var $model app\models\TeacherHasFile */
 
-$this->title = $model->name;
-?>
-<div class="teacher-view">
+$this->title = $model->teacher->name . ' ' . $model->file->name;
+?>.
+<div class="teacher-has-file-view">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
-        <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
+        <?= Html::a('Update', ['update', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -24,13 +24,8 @@ $this->title = $model->name;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'name',
-            'birth',
-            'city',
-            'postcode',
-            'street',
-            'house_number',
-            'distance_from',
+            'teacher_id',
+            'file_id',
         ],
     ]) ?>
 

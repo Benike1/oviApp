@@ -37,7 +37,7 @@ class SignupForm extends Model
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => User::class, 'message' => 'Ez a felhasználónév már foglalt!'],
-            ['username', 'string', 'min' => 6, 'max' => 20],
+            ['username', 'string', 'min' => 6, 'max' => 20, 'message' => 'A felhasználónév minimum 6 maximum 20 karakter lehet!'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],

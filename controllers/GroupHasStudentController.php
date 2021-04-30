@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * GroupHasStudentController implements the CRUD actions for GroupHasStudent model.
@@ -71,15 +72,23 @@ class GroupHasStudentController extends Controller
     }
 
     /**
-     * Creates a new GroupHasStudent model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * @return string|Response
      */
     public function actionCreate()
     {
         $model = new GroupHasStudent();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $post = Yii::$app->request->post();
+        if (isset($post['GroupHasStudent']) && GroupHasStudent::findOne([
+                'group_id' => $post['GroupHasStudent']['group_id'],
+                'student_id' => $post['GroupHasStudent']['student_id'],
+            ])) {
+            return $this->redirect([
+                'view',
+                'group_id' => $post['GroupHasStudent']['group_id'],
+                'student_id' => $post['GroupHasStudent']['student_id']
+            ]);
+        }
+        if ($model->load($post) && $model->save()) {
             return $this->redirect(['view', 'group_id' => $model->group_id, 'student_id' => $model->student_id]);
         }
 
