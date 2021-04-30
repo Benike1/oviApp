@@ -11,8 +11,8 @@ $this->title = $model->teacher->name . ' ' . $model->file->name;
 <div class="teacher-has-file-view">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
-        <?= Html::a('Update', ['update', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id], [
+        <?= Html::a('Módosítás', ['update', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Törlés', ['delete', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',

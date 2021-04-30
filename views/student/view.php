@@ -18,7 +18,7 @@ $this->title = $model->name;
             <?= Html::a($studentHasCaregiver->caregiver->name, ['caregiver/view', 'id' => $studentHasCaregiver->caregiver_id], ['class' => 'btn btn-success']) ?>
         <?php } ?>
         <?= Html::a('Összerendelés', ['create'], ['class' => 'btn btn-warning']) ?>
-        <?= Html::a('Módosítás', ['Módosítás', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

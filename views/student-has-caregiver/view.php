@@ -10,8 +10,8 @@ $this->title = $model->student->name;
 ?>
 <div class="student-has-caregiver-view">
     <h1><?= Html::encode($this->title) ?></h1>
-    <p><?= Html::a('Update', ['update', 'student_id' => $model->student_id, 'caregiver_id' => $model->caregiver_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'student_id' => $model->student_id, 'caregiver_id' => $model->caregiver_id], [
+    <p><?= Html::a('Módosítás', ['update', 'student_id' => $model->student_id, 'caregiver_id' => $model->caregiver_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Törlés', ['delete', 'student_id' => $model->student_id, 'caregiver_id' => $model->caregiver_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
