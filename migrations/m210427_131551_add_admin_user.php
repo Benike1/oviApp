@@ -1,6 +1,5 @@
 <?php
 
-use app\enums\RoleEnum;
 use app\enums\StatusEnum;
 use app\models\User;
 use yii\db\Migration;
@@ -20,7 +19,6 @@ class m210427_131551_add_admin_user extends Migration
             'username' => 'admin',
             'password_hash' => 'admin',
             'email' => 'admin@admin.a',
-            'role' => RoleEnum::ADMIN,
             'status' => StatusEnum::ACTIVE,
         ]);
 

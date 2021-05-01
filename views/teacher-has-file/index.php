@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -17,12 +18,11 @@ $this->title = 'Óvónők - fájlok összerendelése';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'teacher_id',
             'file_id',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                    'class' => ActionColumn::class
+            ],
         ],
     ]) ?>
     <?php Pjax::end(); ?>

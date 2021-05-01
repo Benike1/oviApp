@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-6">
             <?= $form->field($model, 'student_id')->widget(Select2::class, [
                 'data' => Student::getAllStudentIdWithName(),
-                'options' => ['placeholder' => 'Óvónő'],
+                'options' => ['placeholder' => 'Óvodás'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],

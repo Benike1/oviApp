@@ -17,7 +17,7 @@ class StudentSearch extends Student
     public function rules()
     {
         return [
-            [['id', 'class'], 'integer'],
+            [['id', 'edu_id', 'ssn_id'], 'integer'],
             [['name', 'birth'], 'safe'],
         ];
     }
@@ -41,9 +41,6 @@ class StudentSearch extends Student
     public function search($params)
     {
         $query = Student::find();
-
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -51,16 +48,13 @@ class StudentSearch extends Student
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
-
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'birth' => $this->birth,
-            'class' => $this->class,
+            'edu_id' => $this->edu_id,
+            'ssn_id' => $this->ssn_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

@@ -17,7 +17,7 @@ $this->title = $model->name;
         <?php foreach (StudentHasCaregiver::findAll(['student_id' => $model->id]) as $studentHasCaregiver) { ?>
             <?= Html::a($studentHasCaregiver->caregiver->name, ['caregiver/view', 'id' => $studentHasCaregiver->caregiver_id], ['class' => 'btn btn-success']) ?>
         <?php } ?>
-        <?= Html::a('Összerendelés', ['create'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('Összerendelés', ['student-has-caregiver/create'], ['class' => 'btn btn-warning']) ?>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -33,9 +33,18 @@ $this->title = $model->name;
         'attributes' => [
             'name',
             'birth',
-            'class',
+            'edu_id',
+            'ssn_id',
+            [
+                'attribute' => 'group',
+                'label' => 'Csoport(ok)',
+                'value' => static function (Student $model) {
+                    return implode(', ', $model->getGroupNames());
+                }
+            ],
             [
                 'attribute' => 'caregivers',
+                'label' => 'Szülő(k)',
                 'value' => static function (Student $model) {
                     return implode(', ', $model->getCaregiverNames());
                 }

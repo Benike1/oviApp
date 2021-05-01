@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -11,8 +12,13 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string|null $name
  * @property string|null $birth
- * @property int|null $class
+ * @property int|null $edu_id
+ * @property int|null $ssn_id
  *
+ * @property GroupHasStudent[] $groupHasStudents
+ * @property Group[] $groups
+ * @property StudentHasCaregiver[] $studentHasCaregivers
+ * @property-read null[]|null|array|string[] $caregiverNames
  */
 class Student extends ActiveRecord
 {
@@ -31,7 +37,7 @@ class Student extends ActiveRecord
     {
         return [
             [['birth'], 'safe'],
-            [['name', 'class'], 'string', 'max' => 255],
+            [['name','edu_id', 'ssn_id'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,13 +50,41 @@ class Student extends ActiveRecord
             'id' => 'ID',
             'name' => 'Név',
             'birth' => 'Születési idő',
-            'class' => 'Csoport',
+            'edu_id' => 'OM azonosító',
+            'ssn_id' => 'TAJ szám',
         ];
     }
 
     /**
-     * Gets query for [[StudentHasCaregiver]].
-     *
+     * @return ActiveQuery
+     */
+    public function getGroupHasStudents()
+    {
+        return $this->hasMany(GroupHasStudent::class, ['student_id' => 'id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     * @throws InvalidConfigException
+     */
+    public function getGroups()
+    {
+        return $this->hasMany(Group::class, ['id' => 'group_id'])->viaTable('group_has_student', ['student_id' => 'id']);
+    }
+
+
+    public function getGroupNames()
+    {
+        $groups = $this->getGroupHasStudents()->all();
+        if (!$groups) {
+            return [];
+        }
+        return array_map(static function (GroupHasStudent $hasGroups) {
+            return $hasGroups->group->name;
+        }, $groups);
+    }
+
+    /**
      * @return ActiveQuery
      */
     public function getStudentHasCaregivers()
@@ -65,7 +99,7 @@ class Student extends ActiveRecord
     {
         $caregivers = $this->getStudentHasCaregivers()->all();
         if (!$caregivers) {
-            return null;
+            return [];
         }
         return array_map(static function (StudentHasCaregiver $hasCaregiver) {
             return $hasCaregiver->caregiver->name;

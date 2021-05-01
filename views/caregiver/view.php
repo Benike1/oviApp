@@ -22,7 +22,7 @@ YiiAsset::register($this);
             <?= Html::a($studentHasCaregiver->student->name, ['student/view', 'id' => $studentHasCaregiver->student_id], ['class' => 'btn btn-success']) ?>
         <?php } ?>
 
-        <?= Html::a('Összerendelés', ['create'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('Összerendelés', ['student-has-caregiver/create'], ['class' => 'btn btn-warning']) ?>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -47,8 +47,9 @@ YiiAsset::register($this);
             'phone_home',
             [
                 'attribute' => 'students',
+                'label' =>'Gyermeke(i)',
                 'value' => static function (Caregiver $model) {
-                    return implode(', ', $model->getStudentNames());
+                    return implode(', ', $model->getStudentNames())??'';
                 }
             ],
         ],

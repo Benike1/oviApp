@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\enums\RoleEnum;
 use app\enums\StatusEnum;
 use Yii;
 use yii\base\Exception;
@@ -19,16 +18,12 @@ use yii\web\IdentityInterface;
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
- * @property integer $role
  * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_ACTIVE = StatusEnum::ACTIVE;
-    const ROLE_USER = RoleEnum::USER;
 
     /**
      * @inheritdoc
@@ -65,15 +60,11 @@ class User extends ActiveRecord implements IdentityInterface
             ['email', 'unique', 'targetClass' => __CLASS__, 'message' => 'Ez az emailcím már foglalt!'],
 
             [['auth_key', 'password_hash'], 'required'],
-            [['created_at', 'updated_at'], 'integer'],
             [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
 
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => StatusEnum::getValues()],
-
-            ['role', 'default', 'value' => self::ROLE_USER],
-            ['role', 'in', 'range' => RoleEnum::getValues()],
         ];
     }
 
@@ -86,10 +77,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password_hash' => 'Jelszó kód',
             'password_reset_token' => 'Jelszó visszaállító token',
             'email' => 'Email cím',
-            'role' => 'Role',
             'status' => 'Status',
-            'created_at' => 'Létrehozás dátuma',
-            'updated_at' => 'Módosítás dátuma',
         ];
     }
 

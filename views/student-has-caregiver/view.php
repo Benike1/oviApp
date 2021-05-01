@@ -1,5 +1,6 @@
 <?php
 
+use app\models\StudentHasCaregiver;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -22,8 +23,18 @@ $this->title = $model->student->name;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'student_id',
-            'caregiver_id',
+            [
+                'attribute' => 'caregiver_id',
+                'value' => static function (StudentHasCaregiver $model) {
+                    return $model->caregiver->name;
+                }
+            ],
+            [
+                'attribute' => 'student_id',
+                'value' => static function (StudentHasCaregiver $model) {
+                    return $model->student->name;
+                }
+            ],
         ],
     ]) ?>
 </div>

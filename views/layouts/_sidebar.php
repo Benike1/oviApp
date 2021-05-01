@@ -20,7 +20,9 @@ use yii\web\View;
                     'icon' => 'user'
                 ],
                 [
-                    'label' => 'Szülők & gyerekek', 'items' => [
+                    'label' => 'Szülők & gyerekek',
+                    'icon' =>'group',
+                    'items' => [
                     [
                         'url' => '/caregiver/index',
                         'label' => 'Szülők',
@@ -34,12 +36,14 @@ use yii\web\View;
                     [
                         'url' => '/student-has-caregiver/index',
                         'label' => 'Összerendelés',
-                        'icon' => 'user'
+                        'icon' => 'compress'
                     ],
                 ]
                 ],
                 [
-                    'label' => 'Csoportok', 'items' => [
+                    'label' => 'Csoportok',
+                    'icon' =>'group',
+                    'items' => [
                     [
                         'url' => '/group/index',
                         'label' => 'Csoport',
@@ -48,19 +52,24 @@ use yii\web\View;
                     [
                         'url' => '/group-has-teacher/index',
                         'label' => 'Csoport & óvónők',
-                        'icon' => 'users'
+                        'icon' => 'female'
                     ],
                     [
                         'url' => '/group-has-student/index',
                         'label' => 'Csoport & óvodások',
-                        'icon' => 'users'
+                        'icon' => 'child'
                     ],
                 ]
                 ],
                 [
                     'url' => '/tool/index',
                     'label' => 'Eszközök',
-                    'icon' => 'tool'
+                    'icon' => 'gavel'
+                ],
+                [
+                    'url' => '/catering/index',
+                    'label' => 'Étkeztetés',
+                    'icon' => 'spoon'
                 ],
             ],
         ]) ?>

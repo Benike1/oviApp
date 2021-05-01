@@ -16,7 +16,6 @@ class m210419_183141_add_student_table extends Migration
                 'id' => $this->primaryKey(),
                 'name' => $this->string(),
                 'birth' => $this->date(),
-                'class' => $this->integer(),
             ]
         );
     }

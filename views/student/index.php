@@ -25,7 +25,8 @@ $this->title = 'Óvódások';
         'columns' => [
             'name',
             'birth',
-            'class',
+            'edu_id',
+            'ssn_id',
             [
                     'class' => ActionColumn::class
             ],

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -16,9 +17,13 @@ use yii\db\ActiveRecord;
  * @property string|null $street
  * @property int|null $house_number
  * @property int|null $distance_from
+ * @property string|null $email
+ * @property string|null $phone
  *
  * @property GroupHasTeacher[] $groupHasTeachers
  * @property Group[] $groups
+ * @property TeacherHasFile[] $teacherHasFiles
+ * @property File[] $files
  */
 class Teacher extends ActiveRecord
 {
@@ -38,7 +43,7 @@ class Teacher extends ActiveRecord
         return [
             [['birth'], 'safe'],
             [['postcode', 'house_number', 'distance_from'], 'integer'],
-            [['name', 'city', 'street'], 'string', 'max' => 255],
+            [['name', 'city', 'street', 'email', 'phone'], 'string', 'max' => 255],
         ];
     }
 
@@ -56,12 +61,12 @@ class Teacher extends ActiveRecord
             'city' => 'Város',
             'house_number' => 'Házszám',
             'distance_from' => 'Távolság a munkahelytől',
+            'email' => 'Email cím',
+            'phone' => 'Telefonszám',
         ];
     }
 
     /**
-     * Gets query for [[GroupHasTeachers]].
-     *
      * @return ActiveQuery
      */
     public function getGroupHasTeachers()
@@ -70,13 +75,22 @@ class Teacher extends ActiveRecord
     }
 
     /**
-     * Gets query for [[Groups]].
-     *
      * @return ActiveQuery
+     * @throws InvalidConfigException
      */
     public function getGroups()
     {
         return $this->hasMany(Group::class, ['id' => 'group_id'])->viaTable('group_has_teacher', ['teacher_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[TeacherHasFiles]].
+     *
+     * @return ActiveQuery
+     */
+    public function getTeacherHasFiles()
+    {
+        return $this->hasMany(TeacherHasFile::class, ['teacher_id' => 'id']);
     }
 
     /**

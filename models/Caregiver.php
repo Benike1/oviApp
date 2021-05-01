@@ -11,6 +11,7 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string|null $name
  * @property int|null $caregiver
+ * @property string|null $city
  * @property int|null $postcode
  * @property string|null $street
  * @property string|null $house_number
@@ -19,6 +20,7 @@ use yii\db\ActiveRecord;
  * @property string|null $phone_home
  *
  * @property StudentHasCaregiver[] $studentHasCaregivers
+ * @property-read null[]|array|string[] $studentNames
  */
 class Caregiver extends ActiveRecord
 {
@@ -36,12 +38,12 @@ class Caregiver extends ActiveRecord
     public function rules()
     {
         return [
-            [[ 'postcode'], 'integer'],
-            [['caregiver'], 'boolean'],
-            [['birth'], 'safe'],
-            [['name', 'city', 'street', 'house_number', 'phone', 'phone_home'], 'string', 'max' => 255],
             ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
             ['email', 'email'],
+            ['email', 'unique', 'targetClass' => __CLASS__, 'message' => 'Ez az emailcím már foglalt!'],
+            [['caregiver', 'postcode'], 'integer'],
+            [['name', 'city', 'street', 'house_number', 'phone', 'phone_home'], 'string', 'max' => 255],
         ];
     }
 
@@ -60,7 +62,7 @@ class Caregiver extends ActiveRecord
             'street' => 'Utca',
             'house_number' => 'Házszám',
             'email' => 'Email cím',
-            'phone' => 'Mobilteledfonszám',
+            'phone' => 'Mobiltelefonszám',
             'phone_home' => 'Telefonszám (vezetékes)',
         ];
     }
@@ -76,16 +78,16 @@ class Caregiver extends ActiveRecord
     }
 
     /**
-     * @return array|null[]|string[]|null
+     * @return array|null[]|string[]
      */
     public function getStudentNames()
     {
         $students = $this->getStudentHasCaregivers()->all();
         if (!$students) {
-            return null;
+            return [];
         }
         return array_map(static function (StudentHasCaregiver $student) {
-            return $student->caregiver->name;
+            return $student->student->name;
         }, $students);
     }
     /**

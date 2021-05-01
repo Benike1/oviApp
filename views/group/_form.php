@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-6">
             <?= $form->field($model, 'age_group')->widget(Select2::class, [
                 'data' => AgeGroupEnum::getLabels(),
-                'options' => ['placeholder' => 'Szülő'],
+                'options' => ['placeholder' => 'Csoport'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
@@ -28,8 +28,6 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-
 
     <div class="form-group">
         <?= Html::submitButton('Mentés', ['class' => 'btn btn-success']) ?>
