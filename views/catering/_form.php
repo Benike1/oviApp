@@ -26,6 +26,7 @@ use yii\widgets\ActiveForm;
             ]) ?>
         </div>
     </div>
+    <h2>Gyermekek étkeztetése</h2>
     <div class="row">
         <div class="col-lg-6">
             <?= $form->field($model, 'full_price_ids')->widget(Select2::class, [
@@ -59,6 +60,10 @@ use yii\widgets\ActiveForm;
                 ],
             ]) ?>
         </div>
+    </div>
+
+    <h2>Dolgozók étkeztetése</h2>
+    <div class="row">
         <div class="col-lg-6">
             <?= $form->field($model, 'teacher_ids')->widget(Select2::class, [
                 'data' => Teacher::getAllTeacherIdWithName(),

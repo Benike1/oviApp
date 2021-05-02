@@ -49,7 +49,7 @@ YiiAsset::register($this);
                 'attribute' => 'students',
                 'label' =>'Gyermeke(i)',
                 'value' => static function (Caregiver $model) {
-                    return implode(', ', $model->getStudentNames())??'';
+                    return implode(', ', $model->getStudentNames());
                 }
             ],
         ],

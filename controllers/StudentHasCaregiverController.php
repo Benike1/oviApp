@@ -25,10 +25,10 @@ class StudentHasCaregiverController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'create', 'update', 'view'],
+                'only' => ['index', 'create'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'view'],
+                        'actions' => ['index', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -59,20 +59,6 @@ class StudentHasCaregiverController extends Controller
     }
 
     /**
-     * Displays a single StudentHasCaregiver model.
-     * @param integer $student_id
-     * @param integer $caregiver_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView(int $student_id, int $caregiver_id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($student_id, $caregiver_id),
-        ]);
-    }
-
-    /**
      * Creates a new StudentHasCaregiver model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -96,37 +82,6 @@ class StudentHasCaregiverController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing StudentHasCaregiver model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $student_id
-     * @param integer $caregiver_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate(int $student_id, int $caregiver_id)
-    {
-        $model = $this->findModel($student_id, $caregiver_id);
-        $post = Yii::$app->request->post();
-        if (isset($post['StudentHasCaregiver']) && StudentHasCaregiver::findOne([
-                'caregiver_id' => $post['StudentHasCaregiver']['caregiver_id'],
-                'student_id' => $post['StudentHasCaregiver']['student_id'],
-            ])) {
-            return $this->redirect([
-                'view',
-                'student_id' => $post['StudentHasCaregiver']['caregiver_id'],
-                'caregiver_id' => $post['StudentHasCaregiver']['student_id']
-            ]);
-        }
-        if ($model->load($post) && $model->save()) {
-            return $this->redirect(['view', 'student_id' => $model->student_id, 'caregiver_id' => $model->caregiver_id]);
-        }
-
-        return $this->render('update', [
             'model' => $model,
         ]);
     }

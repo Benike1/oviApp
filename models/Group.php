@@ -103,4 +103,31 @@ class Group extends ActiveRecord
         }
         return $idWithNamMap??[];
     }
+
+    /**
+     * @return array|null[]|string[]
+     */
+    public function getStudentNames()
+    {
+        $students = $this->getStudents()->all();
+        if (!$students) {
+            return [];
+        }
+        return array_map(static function (Student $student) {
+            return $student->name;
+        }, $students);
+    }
+    /**
+     * @return array|null[]|string[]
+     */
+    public function getTeacherNames()
+    {
+        $teachers = $this->getTeachers()->all();
+        if (!$teachers) {
+            return [];
+        }
+        return array_map(static function (Teacher $teacher) {
+            return $teacher->name;
+        }, $teachers);
+    }
 }

@@ -110,8 +110,8 @@ class Teacher extends ActiveRecord
     {
         $teachers = self::find()->all();
         foreach ($teachers as $teacher) {
-            $idWithNamMap[$teacher->id] = $teacher->name;
+            $idWithNameMap[$teacher->id] = $teacher->name;
         }
-        return $idWithNamMap ?? [];
+        return $idWithNameMap ?? [];
     }
 }

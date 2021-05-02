@@ -36,7 +36,8 @@ $this->title = 'Szülők és gyermekek összerendelése';
                 }
             ],
             [
-                'class' => ActionColumn::class
+                'class' => ActionColumn::class,
+                'template' => '{delete}'
             ],
         ],
     ]) ?>

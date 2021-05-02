@@ -1,12 +1,13 @@
 <?php
 
+use app\models\Group;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Group */
 
-$this->title = $model->name;
+$this->title = $model->name . ' csoport';
 ?>
 <div class="group-view">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -26,6 +27,22 @@ $this->title = $model->name;
             'name',
             'age_group',
             'description',
+            [
+                'attribute' => 'teachers',
+                'label' => 'Óvónők',
+                'value' => static function (Group $model) {
+                    return implode(', ', $model->getTeacherNames());
+
+                }
+            ],
+            [
+                'attribute' => 'students',
+                'label' => 'Gyerekek',
+                'value' => static function (Group $model) {
+                    return implode(', ', $model->getStudentNames());
+
+                }
+            ],
         ],
     ]) ?>
 </div>

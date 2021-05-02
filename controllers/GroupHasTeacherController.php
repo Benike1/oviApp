@@ -23,10 +23,10 @@ class GroupHasTeacherController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'create', 'update', 'view'],
+                'only' => ['index', 'create'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'view'],
+                        'actions' => ['index', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -57,20 +57,6 @@ class GroupHasTeacherController extends Controller
     }
 
     /**
-     * Displays a single GroupHasTeacher model.
-     * @param integer $group_id
-     * @param integer $teacher_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($group_id, $teacher_id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($group_id, $teacher_id),
-        ]);
-    }
-
-    /**
      * Creates a new GroupHasTeacher model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -78,56 +64,19 @@ class GroupHasTeacherController extends Controller
     public function actionCreate()
     {
         $model = new GroupHasTeacher();
-
         $post = Yii::$app->request->post();
+
         if (isset($post['GroupHasTeacher']) && GroupHasTeacher::findOne([
                 'group_id' => $post['GroupHasTeacher']['group_id'],
                 'teacher_id' => $post['GroupHasTeacher']['teacher_id'],
             ])) {
-            return $this->redirect([
-                'view',
-                'group_id' => $post['GroupHasTeacher']['group_id'],
-                'teacher_id' => $post['GroupHasTeacher']['teacher_id']
-            ]);
+            return $this->actionIndex();
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'group_id' => $model->group_id, 'teacher_id' => $model->teacher_id]);
+        if ($model->load($post) && $model->save()) {
+            return $this->actionIndex();
         }
 
         return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing GroupHasTeacher model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $group_id
-     * @param integer $teacher_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($group_id, $teacher_id)
-    {
-        $model = $this->findModel($group_id, $teacher_id);
-
-        $post = Yii::$app->request->post();
-        if (isset($post['GroupHasTeacher']) && GroupHasTeacher::findOne([
-                'group_id' => $post['GroupHasTeacher']['group_id'],
-                'teacher_id' => $post['GroupHasTeacher']['teacher_id'],
-            ])) {
-            return $this->redirect([
-                'view',
-                'group_id' => $post['GroupHasTeacher']['group_id'],
-                'teacher_id' => $post['GroupHasTeacher']['teacher_id']
-            ]);
-        }
-
-        if ($model->load($post) && $model->save()) {
-            return $this->redirect(['view', 'group_id' => $model->group_id, 'teacher_id' => $model->teacher_id]);
-        }
-
-        return $this->render('update', [
             'model' => $model,
         ]);
     }

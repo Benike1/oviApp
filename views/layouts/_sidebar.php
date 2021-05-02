@@ -21,45 +21,45 @@ use yii\web\View;
                 ],
                 [
                     'label' => 'Szülők & gyerekek',
-                    'icon' =>'group',
+                    'icon' => 'group',
                     'items' => [
-                    [
-                        'url' => '/caregiver/index',
-                        'label' => 'Szülők',
-                        'icon' => 'user'
-                    ],
-                    [
-                        'url' => '/student/index',
-                        'label' => 'Gyerekek',
-                        'icon' => 'user'
-                    ],
-                    [
-                        'url' => '/student-has-caregiver/index',
-                        'label' => 'Összerendelés',
-                        'icon' => 'compress'
-                    ],
-                ]
+                        [
+                            'url' => '/caregiver/index',
+                            'label' => 'Szülők',
+                            'icon' => 'user'
+                        ],
+                        [
+                            'url' => '/student/index',
+                            'label' => 'Gyerekek',
+                            'icon' => 'user'
+                        ],
+                        [
+                            'url' => '/student-has-caregiver/index',
+                            'label' => 'Összerendelés',
+                            'icon' => 'compress'
+                        ],
+                    ]
                 ],
                 [
                     'label' => 'Csoportok',
-                    'icon' =>'group',
+                    'icon' => 'group',
                     'items' => [
-                    [
-                        'url' => '/group/index',
-                        'label' => 'Csoport',
-                        'icon' => 'users'
-                    ],
-                    [
-                        'url' => '/group-has-teacher/index',
-                        'label' => 'Csoport & Óvónők',
-                        'icon' => 'female'
-                    ],
-                    [
-                        'url' => '/group-has-student/index',
-                        'label' => 'Csoport & Gyerekek',
-                        'icon' => 'child'
-                    ],
-                ]
+                        [
+                            'url' => '/group/index',
+                            'label' => 'Csoportok',
+                            'icon' => 'users'
+                        ],
+                        [
+                            'url' => '/group-has-teacher/index',
+                            'label' => 'Csoport & Óvónők',
+                            'icon' => 'female'
+                        ],
+                        [
+                            'url' => '/group-has-student/index',
+                            'label' => 'Csoport & Gyerekek',
+                            'icon' => 'child'
+                        ],
+                    ]
                 ],
                 [
                     'url' => '/tool/index',
@@ -69,7 +69,7 @@ use yii\web\View;
                 [
                     'url' => '/catering/index',
                     'label' => 'Étkeztetés',
-                    'icon' => 'spoon'
+                    'icon' => 'cutlery'
                 ],
                 [
                     'url' => '/setting/index',

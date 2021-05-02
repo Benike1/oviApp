@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use Throwable;
 use Yii;
 use app\models\GroupHasStudent;
 use app\models\search\GroupHasStudentSearch;
+use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -24,10 +26,10 @@ class GroupHasStudentController extends Controller
         return [
             'access' => [
             'class' => AccessControl::class,
-            'only' => ['index', 'create', 'update', 'view'],
+            'only' => ['index', 'create'],
             'rules' => [
                 [
-                    'actions' => ['index', 'create', 'update', 'view'],
+                    'actions' => ['index', 'create'],
                     'allow' => true,
                     'roles' => ['@'],
                 ],
@@ -58,20 +60,6 @@ class GroupHasStudentController extends Controller
     }
 
     /**
-     * Displays a single GroupHasStudent model.
-     * @param integer $group_id
-     * @param integer $student_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($group_id, $student_id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($group_id, $student_id),
-        ]);
-    }
-
-    /**
      * @return string|Response
      */
     public function actionCreate()
@@ -82,38 +70,13 @@ class GroupHasStudentController extends Controller
                 'group_id' => $post['GroupHasStudent']['group_id'],
                 'student_id' => $post['GroupHasStudent']['student_id'],
             ])) {
-            return $this->redirect([
-                'view',
-                'group_id' => $post['GroupHasStudent']['group_id'],
-                'student_id' => $post['GroupHasStudent']['student_id']
-            ]);
+            return $this->actionIndex();
         }
         if ($model->load($post) && $model->save()) {
-            return $this->redirect(['view', 'group_id' => $model->group_id, 'student_id' => $model->student_id]);
+            return $this->actionIndex();
         }
 
         return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing GroupHasStudent model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $group_id
-     * @param integer $student_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($group_id, $student_id)
-    {
-        $model = $this->findModel($group_id, $student_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'group_id' => $model->group_id, 'student_id' => $model->student_id]);
-        }
-
-        return $this->render('update', [
             'model' => $model,
         ]);
     }
@@ -125,6 +88,8 @@ class GroupHasStudentController extends Controller
      * @param integer $student_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws Throwable
+     * @throws StaleObjectException
      */
     public function actionDelete($group_id, $student_id)
     {

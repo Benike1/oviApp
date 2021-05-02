@@ -36,7 +36,8 @@ $this->title = 'Csoportok - óvónők összerendelése';
                 }
             ],
             [
-                'class' => ActionColumn::class
+                'class' => ActionColumn::class,
+                'template' => '{delete}'
             ],
         ],
     ]) ?>

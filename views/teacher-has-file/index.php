@@ -1,5 +1,6 @@
 <?php
 
+use app\models\TeacherHasFile;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -18,10 +19,21 @@ $this->title = 'Óvónők - fájlok összerendelése';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'teacher_id',
-            'file_id',
             [
-                    'class' => ActionColumn::class
+                'attribute' => 'teacher_id',
+                'value' => static function (TeacherHasFile $model) {
+                    return $model->teacher->name;
+                }
+            ],
+            [
+                'attribute' => 'file_id',
+                'value' => static function (TeacherHasFile $model) {
+                    return $model->file->name;
+                }
+            ],
+            [
+                'class' => ActionColumn::class,
+                'template' => '{delete}'
             ],
         ],
     ]) ?>

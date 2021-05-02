@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use Throwable;
 use Yii;
 use app\models\TeacherHasFile;
 use app\models\search\TeacherHasFileSearch;
+use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -23,10 +25,10 @@ class TeacherHasFileController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'create', 'update', 'view'],
+                'only' => ['index', 'create'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'view'],
+                        'actions' => ['index', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -57,20 +59,6 @@ class TeacherHasFileController extends Controller
     }
 
     /**
-     * Displays a single TeacherHasFile model.
-     * @param integer $teacher_id
-     * @param integer $file_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($teacher_id, $file_id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($teacher_id, $file_id),
-        ]);
-    }
-
-    /**
      * Creates a new TeacherHasFile model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -78,33 +66,13 @@ class TeacherHasFileController extends Controller
     public function actionCreate()
     {
         $model = new TeacherHasFile();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $post = Yii::$app->request->post();
+        
+        if ($model->load($post) && $model->save()) {
             return $this->redirect(['view', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing TeacherHasFile model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $teacher_id
-     * @param integer $file_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($teacher_id, $file_id)
-    {
-        $model = $this->findModel($teacher_id, $file_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'teacher_id' => $model->teacher_id, 'file_id' => $model->file_id]);
-        }
-
-        return $this->render('update', [
             'model' => $model,
         ]);
     }
@@ -116,8 +84,10 @@ class TeacherHasFileController extends Controller
      * @param integer $file_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws Throwable
+     * @throws StaleObjectException
      */
-    public function actionDelete($teacher_id, $file_id)
+    public function actionDelete(int $teacher_id, int $file_id)
     {
         $this->findModel($teacher_id, $file_id)->delete();
 
@@ -132,7 +102,7 @@ class TeacherHasFileController extends Controller
      * @return TeacherHasFile the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($teacher_id, $file_id)
+    protected function findModel(int $teacher_id, int $file_id)
     {
         if (($model = TeacherHasFile::findOne(['teacher_id' => $teacher_id, 'file_id' => $file_id])) !== null) {
             return $model;

@@ -91,4 +91,16 @@ class File extends ActiveRecord
     {
         return $this->hasMany(Teacher::class, ['id' => 'teacher_id'])->viaTable('teacher_has_file', ['file_id' => 'id']);
     }
+
+    /**
+     * @return array
+     */
+    public static function getAllFileIdWithName()
+    {
+        $files = self::find()->all();
+        foreach ($files as $file) {
+            $idWithNamMap[$file->id] = $file->name;
+        }
+        return $idWithNamMap ?? [];
+    }
 }
