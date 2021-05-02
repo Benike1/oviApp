@@ -2,12 +2,13 @@
 
 use app\models\Catering;
 use yii\helpers\Html;
-use yii\web\YiiAsset;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Catering */
+/* @var $this View */
+/* @var $model Catering */
 
+$this->title = $model->date;
 ?>
 <div class="catering-view">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -27,12 +28,30 @@ use yii\widgets\DetailView;
         'attributes' => [
             'date',
             [
-                'attribute' => 'studentIds',
+                'attribute' => 'full_price_ids',
                 'value' => static function (Catering $model) {
-                    return implode(', ', $model->getStudentNames());
-
+                    return implode(', ', $model->getStudentNames($model->full_price_ids));
+                }
+            ],
+            [
+                'attribute' => 'half_price_ids',
+                'value' => static function (Catering $model) {
+                    return implode(', ', $model->getStudentNames($model->half_price_ids));
+                }
+            ],
+            [
+                'attribute' => 'non_price_ids',
+                'value' => static function (Catering $model) {
+                    return implode(', ', $model->getStudentNames($model->non_price_ids));
+                }
+            ],
+            [
+                'attribute' => 'teacher_ids',
+                'value' => static function (Catering $model) {
+                    return implode(', ', $model->getTeacherNames($model->teacher_ids));
                 }
             ],
         ],
     ]) ?>
+
 </div>

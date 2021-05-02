@@ -14,6 +14,8 @@ $this->title = $model->group->name . ' - ' . $model->student->name;
 <div class="group-has-student-view">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
+        <?= Html::a($model->group->name, ['group/view', 'id' => $model->group_id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a($model->student->name, ['student/view', 'id' => $model->student_id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Módosítás', ['update', 'group_id' => $model->group_id, 'student_id' => $model->student_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'group_id' => $model->group_id, 'student_id' => $model->student_id], [
             'class' => 'btn btn-danger',

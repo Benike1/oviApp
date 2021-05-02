@@ -71,6 +71,11 @@ use yii\web\View;
                     'label' => 'Étkeztetés',
                     'icon' => 'spoon'
                 ],
+                [
+                    'url' => '/setting/index',
+                    'label' => 'Beállítások',
+                    'icon' => 'cog'
+                ],
             ],
         ]) ?>
     </section>

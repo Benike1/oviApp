@@ -5,12 +5,14 @@ namespace app\models;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "catering".
- *
- * @property int $id
- * @property string|null $date
- * @property-read null[]|string[] $studentNames
- * @property array $students
+ * Class Catering
+ * @package app\models
+ * @property int $id [int(11)]
+ * @property string $date [date]
+ * @property array $full_price_ids [json]
+ * @property array $half_price_ids [json]
+ * @property array $non_price_ids [json]
+ * @property array $teacher_ids [json]
  */
 class Catering extends ActiveRecord
 {
@@ -28,7 +30,7 @@ class Catering extends ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'studentIds'], 'safe'],
+            [['date', 'full_price_ids', 'half_price_ids', 'non_price_ids', 'teacher_ids'], 'safe'],
         ];
     }
 
@@ -40,24 +42,44 @@ class Catering extends ActiveRecord
         return [
             'id' => 'ID',
             'date' => 'Date',
-            'studentIds' => 'Students',
+            'full_price_ids' => 'Teljes árúak',
+            'half_price_ids' => 'Kedvezményesek (50%)',
+            'non_price_ids' => 'Ingyenesek',
+            'teacher_ids' => 'Dolgozók',
         ];
     }
 
     /**
+     * @param array $student_ids
      * @return array
      */
-    public function getStudentNames(): array
+    public function getStudentNames(array $student_ids): array
     {
         $studentNames = [];
 
-        if (!$this->studentIds){
+        if (!$student_ids) {
             return $studentNames;
         }
-        foreach ($this->studentIds as $studentId) {
-            $studentNames[] = Student::findOne(['id' =>$studentId])->name;
+        foreach ($student_ids as $studentId) {
+            $studentNames[] = Student::findOne(['id' => $studentId])->name;
         }
         return $studentNames;
+    }
 
+    /**
+     * @param array $teacher_ids
+     * @return array
+     */
+    public function getTeacherNames(array $teacher_ids): array
+    {
+        $teacherNames = [];
+
+        if (!$teacher_ids) {
+            return $teacherNames;
+        }
+        foreach ($teacher_ids as $teacherId) {
+            $teacherNames[] = Teacher::findOne(['id' => $teacherId])->name;
+        }
+        return $teacherNames;
     }
 }
