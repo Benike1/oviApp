@@ -30,7 +30,7 @@ use yii\web\View;
                     ],
                     [
                         'url' => '/student/index',
-                        'label' => 'Óvodások',
+                        'label' => 'Gyerekek',
                         'icon' => 'user'
                     ],
                     [
@@ -51,12 +51,12 @@ use yii\web\View;
                     ],
                     [
                         'url' => '/group-has-teacher/index',
-                        'label' => 'Csoport & óvónők',
+                        'label' => 'Csoport & Óvónők',
                         'icon' => 'female'
                     ],
                     [
                         'url' => '/group-has-student/index',
-                        'label' => 'Csoport & óvodások',
+                        'label' => 'Csoport & Gyerekek',
                         'icon' => 'child'
                     ],
                 ]

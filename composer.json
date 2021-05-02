@@ -28,7 +28,8 @@
     "ext-curl": "*",
     "ext-json": "*",
     "kartik-v/yii2-widget-datepicker": "dev-master",
-    "kartik-v/yii2-widget-select2": "dev-master"
+    "kartik-v/yii2-widget-select2": "dev-master",
+    "kartik-v/yii2-mpdf": "dev-master"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
