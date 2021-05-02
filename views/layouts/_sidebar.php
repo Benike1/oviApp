@@ -72,6 +72,22 @@ use yii\web\View;
                     'icon' => 'cutlery'
                 ],
                 [
+                    'label' => 'Médiatár',
+                    'icon' => 'file',
+                    'items' => [
+                        [
+                            'url' => '/file/index',
+                            'label' => 'Fájlok',
+                            'icon' => 'file'
+                        ],
+                        [
+                            'url' => '/teacher-has-file/index',
+                            'label' => 'Óvónők & fájok',
+                            'icon' => 'female'
+                        ],
+                    ]
+                ],
+                [
                     'url' => '/setting/index',
                     'label' => 'Beállítások',
                     'icon' => 'cog'

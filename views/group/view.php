@@ -12,6 +12,7 @@ $this->title = $model->name . ' csoport';
 <div class="group-view">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
+        <?= Html::a('Jelenléti ív', ['generate-pdf', 'group_id' => $model->id], ['class' => 'btn btn-default', 'target'=>'_blank', 'data-toggle'=>'tooltip']) ?>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',

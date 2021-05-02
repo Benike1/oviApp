@@ -1,13 +1,16 @@
 <?php
 
+use app\models\search\GroupSearch;
+use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\web\View;
 use yii\widgets\Pjax;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\search\GroupSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this View */
+/* @var $searchModel GroupSearch */
+/* @var $dataProvider ActiveDataProvider */
 
 $this->title = 'Csoportok';
 ?>

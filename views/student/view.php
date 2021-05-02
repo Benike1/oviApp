@@ -33,6 +33,7 @@ $this->title = $model->name;
         'attributes' => [
             'name',
             'birth',
+            'gender',
             'edu_id',
             'ssn_id',
             [

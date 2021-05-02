@@ -12,12 +12,15 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string|null $name
  * @property string|null $birth
+ * @property string|null $gender
  * @property int|null $edu_id
  * @property int|null $ssn_id
  *
  * @property GroupHasStudent[] $groupHasStudents
  * @property Group[] $groups
  * @property StudentHasCaregiver[] $studentHasCaregivers
+ * @property-read ActiveQuery $caregiver
+ * @property-read array $groupNames
  * @property-read null[]|null|array|string[] $caregiverNames
  */
 class Student extends ActiveRecord
@@ -37,7 +40,7 @@ class Student extends ActiveRecord
     {
         return [
             [['birth'], 'safe'],
-            [['name','edu_id', 'ssn_id'], 'string', 'max' => 255],
+            [['name', 'gender', 'edu_id', 'ssn_id'], 'string', 'max' => 255],
         ];
     }
 
@@ -49,6 +52,7 @@ class Student extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Név',
+            'gender' => 'Nem',
             'birth' => 'Születési idő',
             'edu_id' => 'OM azonosító',
             'ssn_id' => 'TAJ szám',
@@ -93,6 +97,14 @@ class Student extends ActiveRecord
     }
 
     /**
+     * @return ActiveQuery
+     */
+    public function getCaregiver()
+    {
+        return $this->getStudentHasCaregivers()->andWhere(['caregiver.caregiver' => true]);
+    }
+
+    /**
      * @return array|null[]|string[]|null
      */
     public function getCaregiverNames()
@@ -115,6 +127,6 @@ class Student extends ActiveRecord
         foreach ($students as $student) {
             $idWithNamMap[$student->id] = $student->name;
         }
-        return $idWithNamMap??[];
+        return $idWithNamMap ?? [];
     }
 }

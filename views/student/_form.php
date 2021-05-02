@@ -1,7 +1,9 @@
 <?php
 
+use app\enums\GenderEnum;
 use app\models\Student;
 use kartik\date\DatePicker;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
@@ -30,6 +32,18 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <div class="col-lg-6">
+            <?= $form->field($studentModel, 'gender')->widget(Select2::class, [
+                'data' => GenderEnum::getLabels(),
+                'options' => ['placeholder' => 'Nem...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]) ?>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
             <?= $form->field($studentModel, 'edu_id')->textInput() ?>
         </div>
         <div class="col-lg-6">
@@ -40,7 +54,5 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton('Mentés', ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

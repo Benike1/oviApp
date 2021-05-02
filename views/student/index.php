@@ -25,6 +25,7 @@ $this->title = 'Óvódások';
         'columns' => [
             'name',
             'birth',
+            'gender',
             'edu_id',
             'ssn_id',
             [

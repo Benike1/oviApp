@@ -1,6 +1,7 @@
 <?php
 
 use app\models\User;
+use kartik\mpdf\Pdf;
 use yii\debug\Module as DebugModule;
 use yii\gii\Module as GiiModule;
 use yii\log\FileTarget;
@@ -46,6 +47,12 @@ $config = [
 //            'class' => Mailer::class,
 //            'useFileTransport' => true,
 //        ],
+        'pdf' => [
+            'class' => Pdf::class,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_BROWSER,
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

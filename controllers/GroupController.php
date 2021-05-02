@@ -2,13 +2,19 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Group;
 use app\models\search\GroupSearch;
+use kartik\mpdf\Pdf;
+use Mpdf\MpdfException;
+use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
+use setasign\Fpdi\PdfParser\PdfParserException;
+use setasign\Fpdi\PdfParser\Type\PdfTypeException;
+use Yii;
+use yii\base\InvalidConfigException;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -135,5 +141,35 @@ class GroupController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param int $group_id
+     * @return mixed
+     * @throws CrossReferenceException
+     * @throws InvalidConfigException
+     * @throws MpdfException
+     * @throws PdfParserException
+     * @throws PdfTypeException
+     */
+    public function actionGeneratePdf(int $group_id)
+    {
+        $group = Group::findOne(['id' => $group_id]);
+
+        $content = $this->renderPartial('_attendance_sheet', [
+            'group' => $group,
+            ]);
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'content' => $content,
+            'cssInline' => '.kv-heading-1{font-size:18px} .table, th, td {border: 1px solid black; border-collapse: collapse;}',
+            'options' => ['title' => 'Krajee Report Title'],
+            'methods' => [
+                'SetHeader' => ['Jelenléti ív'],
+            ]
+        ]);
+
+        return $pdf->render();
     }
 }
