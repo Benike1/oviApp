@@ -163,7 +163,7 @@ class CateringController extends Controller
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,
             'content' => $content,
-            'filename' => 'Étkeztetési_nyilvántartás '.date('yyyy-mm-dd'),
+            'filename' => 'Étkeztetési_nyilvántartás_'.date('yyyy-mm-dd').'.pdf',
             'cssInline' => '.kv-heading-1{font-size:18px} .table, th, td {border: 1px solid black; border-collapse: collapse;}',
             'options' => [
                 'title' => 'Étkeztetési nyilvántartás'

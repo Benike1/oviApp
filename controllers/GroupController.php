@@ -156,14 +156,17 @@ class GroupController extends Controller
     {
         $group = Group::findOne(['id' => $group_id]);
 
+        if (!$group){
+            return 'A PDF nem nyomtatható';
+        }
         $content = $this->renderPartial('_attendance_sheet', [
             'group' => $group,
-            ]);
+        ]);
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,
             'content' => $content,
-            'filename' => 'Jelenléti ív',
+            'filename' => 'Jelenléti_ív_' . $group->name . '.pdf',
             'cssInline' => '.kv-heading-1{font-size:18px} .table, th, td {border: 1px solid black; border-collapse: collapse;}',
             'options' => [
                 'title' => 'Jelenléti ív'
