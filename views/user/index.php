@@ -12,7 +12,6 @@ use yii\widgets\Pjax;
 <div class="user-index">
     <h1>Felhasználók</h1>
     <?php Pjax::begin(); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -21,8 +20,6 @@ use yii\widgets\Pjax;
             'email:email',
             ['class' => ActionColumn::class],
         ],
-    ]); ?>
-
+    ]) ?>
     <?php Pjax::end(); ?>
-
 </div>

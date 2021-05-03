@@ -11,7 +11,6 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="group-form">
-
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-lg-6">
@@ -28,11 +27,8 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
     <div class="form-group">
         <?= Html::submitButton('Mentés', ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

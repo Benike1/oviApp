@@ -17,7 +17,6 @@ $this->title = 'Óvódások';
 <div class="student-index">
     <h1><?= Html::encode($this->title) ?></h1>
     <p><?= Html::a('Óvodás létrehozása', ['create'], ['class' => 'btn btn-success']) ?></p>
-
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

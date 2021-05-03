@@ -14,14 +14,11 @@ $this->title = $model->name;
 YiiAsset::register($this);
 ?>
 <div class="caregiver-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?php foreach (StudentHasCaregiver::findAll(['caregiver_id' => $model->id]) as $studentHasCaregiver) { ?>
             <?= Html::a($studentHasCaregiver->student->name, ['student/view', 'id' => $studentHasCaregiver->student_id], ['class' => 'btn btn-success']) ?>
         <?php } ?>
-
         <?= Html::a('Összerendelés', ['student-has-caregiver/create'], ['class' => 'btn btn-warning']) ?>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
@@ -32,7 +29,6 @@ YiiAsset::register($this);
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -54,5 +50,4 @@ YiiAsset::register($this);
             ],
         ],
     ]) ?>
-
 </div>

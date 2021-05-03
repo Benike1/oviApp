@@ -14,9 +14,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="student-has-caregiver-form">
-
     <?php $form = ActiveForm::begin(); ?>
-
     <div class="row">
         <div class="col-lg-6">
             <?= $form->field($model, 'student_id')->widget(Select2::class, [
@@ -37,11 +35,8 @@ use yii\widgets\ActiveForm;
             ]) ?>
         </div>
     </div>
-
     <div class="form-group">
         <?= Html::submitButton('Összerendelés', ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

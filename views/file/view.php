@@ -23,7 +23,6 @@ $this->title = $model->name;
             <?= Html::a('Download file', ['download', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
         <?php } ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -32,5 +31,4 @@ $this->title = $model->name;
             'filename',
         ],
     ]) ?>
-
 </div>

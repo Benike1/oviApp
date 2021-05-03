@@ -40,7 +40,6 @@ use yii\widgets\ActiveForm;
                 ],
             ]) ?>
         </div>
-
     </div>
     <div class="row">
         <div class="col-lg-6">
@@ -50,7 +49,6 @@ use yii\widgets\ActiveForm;
             <?= $form->field($studentModel, 'ssn_id')->textInput() ?>
         </div>
     </div>
-
     <div class="form-group">
         <?= Html::submitButton('Mentés', ['class' => 'btn btn-success']) ?>
     </div>

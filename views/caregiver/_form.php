@@ -21,7 +21,6 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'caregiver')->checkbox() ?>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-6">
             <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
@@ -30,7 +29,6 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'phone_home')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-6">
             <?= $form->field($model, 'city')->textInput() ?>
@@ -39,7 +37,6 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'postcode')->textInput() ?>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-6">
             <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
@@ -48,12 +45,8 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'house_number')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
-
-
     <div class="form-group">
         <?= Html::submitButton('Mentés', ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

@@ -15,6 +15,10 @@ use yii\web\Controller;
 use yii\web\ErrorAction;
 use yii\web\Response;
 
+/**
+ * Class SiteController
+ * @package app\controllers
+ */
 class SiteController extends Controller
 {
     /**

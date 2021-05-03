@@ -12,5 +12,4 @@ $this->title = 'Étkeztetés módosítása';
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>

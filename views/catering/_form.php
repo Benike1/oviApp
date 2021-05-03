@@ -61,7 +61,6 @@ use yii\widgets\ActiveForm;
             ]) ?>
         </div>
     </div>
-
     <h2>Dolgozók étkeztetése</h2>
     <div class="row">
         <div class="col-lg-6">
@@ -75,10 +74,8 @@ use yii\widgets\ActiveForm;
             ]) ?>
         </div>
     </div>
-
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
 </div>

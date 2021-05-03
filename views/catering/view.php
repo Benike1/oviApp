@@ -53,5 +53,4 @@ $this->title = $model->date. ' nap étkeztetése';
             ],
         ],
     ]) ?>
-
 </div>

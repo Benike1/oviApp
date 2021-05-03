@@ -10,7 +10,6 @@ $this->title = $model->username;
 ?>
 <div class="user-view">
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
@@ -21,7 +20,6 @@ $this->title = $model->username;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -29,5 +27,4 @@ $this->title = $model->username;
             'email:email',
         ],
     ]) ?>
-
 </div>

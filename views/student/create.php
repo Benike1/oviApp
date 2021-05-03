@@ -13,9 +13,7 @@ $this->title = 'Óvódás hozzáadása';
 ?>
 <div class="student-create">
     <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'studentModel' => $studentModel,
     ]) ?>
-
 </div>

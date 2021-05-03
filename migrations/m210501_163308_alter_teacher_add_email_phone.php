@@ -12,8 +12,8 @@ class m210501_163308_alter_teacher_add_email_phone extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('teacher','email',$this->string());
-        $this->addColumn('teacher','phone',$this->string());
+        $this->addColumn('teacher','email',$this->string()->after('birth'));
+        $this->addColumn('teacher','phone',$this->string()->after('email'));
     }
 
     /**

@@ -13,7 +13,6 @@ use yii\widgets\ActiveForm;
 
 <div class="teacher-has-file-form">
     <?php $form = ActiveForm::begin(); ?>
-
     <div class="row">
         <div class="col-lg-6">
             <?= $form->field($model, 'teacher_id')->widget(Select2::class, [

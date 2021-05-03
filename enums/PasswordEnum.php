@@ -16,6 +16,4 @@ class PasswordEnum extends Enum
     public const PASS8 = 'abc123';
     public const PASS9 = '000000';
 
-
-
 }

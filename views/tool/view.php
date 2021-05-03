@@ -9,9 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 ?>
 <div class="tool-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
@@ -22,7 +20,6 @@ $this->title = $model->name;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -31,5 +28,4 @@ $this->title = $model->name;
             'count',
         ],
     ]) ?>
-
 </div>

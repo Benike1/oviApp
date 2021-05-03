@@ -12,5 +12,4 @@ $this->title = $model->name . ' beállítás módosítása';
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>

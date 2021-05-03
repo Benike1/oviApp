@@ -20,7 +20,6 @@ $this->title = $model->name;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,5 +32,4 @@ $this->title = $model->name;
             'distance_from',
         ],
     ]) ?>
-
 </div>
