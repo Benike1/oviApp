@@ -40,9 +40,9 @@ class Setting extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'value' => 'Value',
-            'description' => 'Description',
+            'name' => 'Név',
+            'value' => 'Érték',
+            'description' => 'Leírás',
         ];
     }
 }

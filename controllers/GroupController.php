@@ -163,8 +163,11 @@ class GroupController extends Controller
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,
             'content' => $content,
+            'filename' => 'Jelenléti ív',
             'cssInline' => '.kv-heading-1{font-size:18px} .table, th, td {border: 1px solid black; border-collapse: collapse;}',
-            'options' => ['title' => 'Krajee Report Title'],
+            'options' => [
+                'title' => 'Jelenléti ív'
+            ],
             'methods' => [
                 'SetHeader' => ['Jelenléti ív'],
             ]

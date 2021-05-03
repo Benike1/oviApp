@@ -42,13 +42,14 @@ $this->title = $model->date. ' nap étkeztetése';
             [
                 'attribute' => 'non_price_ids',
                 'value' => static function (Catering $model) {
-                    return implode(', ', $model->getStudentNames($model->non_price_ids));
+        $names = implode(', ', $model->getStudentNames($model->non_price_ids));
+                    return $names??[];
                 }
             ],
             [
                 'attribute' => 'teacher_ids',
                 'value' => static function (Catering $model) {
-                    return implode(', ', $model->getTeacherNames($model->teacher_ids));
+                    return implode(', ', $model->getTeacherNames($model->teacher_ids))??[];
                 }
             ],
         ],

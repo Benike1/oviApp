@@ -53,7 +53,7 @@ class Catering extends ActiveRecord
      * @param array $student_ids
      * @return array
      */
-    public function getStudentNames(array $student_ids): array
+    public function getStudentNames($student_ids): array
     {
         $studentNames = [];
 
@@ -70,7 +70,7 @@ class Catering extends ActiveRecord
      * @param array $teacher_ids
      * @return array
      */
-    public function getTeacherNames(array $teacher_ids): array
+    public function getTeacherNames($teacher_ids): array
     {
         $teacherNames = [];
 
