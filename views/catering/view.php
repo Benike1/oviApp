@@ -13,6 +13,7 @@ $this->title = $model->date. ' nap étkeztetése';
 <div class="catering-view">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
+        <?= Html::a('Étkezési lista', ['generate-pdf', 'catering_id' => $model->id], ['class' => 'btn btn-default', 'target'=>'_blank', 'data-toggle'=>'tooltip']) ?>
         <?= Html::a('Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Törlés', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',

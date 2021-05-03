@@ -2,12 +2,18 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Catering;
 use app\models\search\CateringSearch;
+use kartik\mpdf\Pdf;
+use Mpdf\MpdfException;
+use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
+use setasign\Fpdi\PdfParser\PdfParserException;
+use setasign\Fpdi\PdfParser\Type\PdfTypeException;
+use Yii;
+use yii\base\InvalidConfigException;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CateringController implements the CRUD actions for Catering model.
@@ -123,5 +129,38 @@ class CateringController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param int $catering_id
+     * @return mixed
+     * @throws CrossReferenceException
+     * @throws InvalidConfigException
+     * @throws MpdfException
+     * @throws PdfParserException
+     * @throws PdfTypeException
+     */
+    public function actionGeneratePdf(int $catering_id)
+    {
+        $catering = Catering::findOne(['id' => $catering_id]);
+
+        $content = $this->renderPartial('_catering_sheet', [
+            'catering' => $catering,
+        ]);
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'content' => $content,
+            'filename' => 'Étkeztetési_nyilvántartás '.date('yyyy-mm-dd'),
+            'cssInline' => '.kv-heading-1{font-size:18px} .table, th, td {border: 1px solid black; border-collapse: collapse;}',
+            'options' => [
+                'title' => 'Étkeztetési nyilvántartás'
+            ],
+            'methods' => [
+                'SetHeader' => ['Étkeztetési lista'],
+            ]
+        ]);
+
+        return $pdf->render();
     }
 }
