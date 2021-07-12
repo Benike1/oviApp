@@ -89,10 +89,10 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = [
-        'class' => DebugModule::class,
-    ];
+//    $config['bootstrap'][] = 'debug';
+//    $config['modules']['debug'] = [
+//        'class' => DebugModule::class,
+//    ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [

@@ -41,7 +41,7 @@ class Catering extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'date' => 'Date',
+            'date' => 'Dátum',
             'full_price_ids' => 'Teljes árúak',
             'half_price_ids' => 'Kedvezményesek (50%)',
             'non_price_ids' => 'Ingyenesek',

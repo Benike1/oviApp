@@ -24,8 +24,10 @@ use yii\web\View;
                         '<li>'
                         . Html::beginForm(['/site/logout'], 'post')
                         . Html::submitButton(
-                            'Logout (' . Yii::$app->user->identity->username . ')',
-                            ['class' => 'btn btn-link logout']
+                            'Kijelentkezés (' . Yii::$app->user->identity->username . ')',
+                            ['class' => 'btn logout',
+                            'style'=> 'padding: 15px 20px; background-color: #222d32; color: #b8c7ce;'
+                            ]
                         )
                         . Html::endForm()
                         . '</li>'

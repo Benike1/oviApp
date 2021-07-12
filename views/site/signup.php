@@ -34,7 +34,7 @@ $this->registerJs("jQuery('#reveal_password_repeat').change(function(){jQuery('#
                     <?= Html::checkbox('reveal_password_repeat', false, ['id' => 'reveal_password_repeat']) ?> <?= Html::label('Mutasd a jelszót ', 'reveal_password_repeat') ?>
             </div>
                 <div class="form-group">
-                    <?= Html::submitButton('Sign up', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('Regisztráció', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
         </div>

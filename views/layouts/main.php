@@ -43,7 +43,7 @@ AdminLteAsset::register($this);
         </section>
     </div>
     <footer class="main-footer">
-        Készítette <strong>Tóth Benjámin</strong>
+        Készítette: <strong>Tóth Benjámin</strong>
     </footer>
 </div>
 

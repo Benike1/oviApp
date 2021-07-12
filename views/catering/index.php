@@ -19,8 +19,10 @@ $this->title = 'Étkeztetés';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'date',
             [
+                'attribute' => 'date',
+                'label' => 'Dátum'
+            ],            [
                 'attribute' => 'full_price_ids',
                 'value' => static function (Catering $model) {
                     return implode(', ', $model->getStudentNames($model->full_price_ids));
