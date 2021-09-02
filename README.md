@@ -1,1 +1,1 @@
-Oviapp doksi. This app is for kindewrgarden teachers.
+Oviapp doksi. This app is for kindergarden teachers.
